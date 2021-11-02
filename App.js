@@ -24,7 +24,7 @@ export default function App() {
           initialRouteName="StartScreen"
           screenOptions={{
             headerShown: true,
-            headerTitle: null,
+            headerTitle: '',
             headerStyle: {
               height: 60,
               elevation: 0,
