@@ -1,16 +1,12 @@
 import React, { useState } from 'react'
-import { View, StyleSheet, TouchableOpacity } from 'react-native'
-import { Text } from 'react-native-paper'
-import Background from '../components/Background'
-import Logo from '../components/Logo'
-import Header from '../components/Header'
+import { View, StyleSheet, TouchableOpacity, Image } from 'react-native'
+import { Text, useTheme } from 'react-native-paper'
 import Button from '../components/Button'
 import TextInput from '../components/TextInput'
-import BackButton from '../components/BackButton'
-import { theme } from '../core/theme'
 import { emailValidator } from '../helpers/emailValidator'
 import { passwordValidator } from '../helpers/passwordValidator'
 import { nameValidator } from '../helpers/nameValidator'
+import GlobalStyles from '../core/GlobalStyles'
 
 export default function RegisterScreen({ navigation }) {
   const [name, setName] = useState({ value: '', error: '' })
@@ -33,11 +29,15 @@ export default function RegisterScreen({ navigation }) {
     })
   }
 
+  const styles = makeStyles(useTheme())
+
   return (
-    <Background>
-      <BackButton goBack={navigation.goBack} />
-      <Logo />
-      <Header>Create Account</Header>
+    <View style={GlobalStyles.background}>
+      <Image
+        source={require('../assets/meetlogo.png')}
+        style={GlobalStyles.logo}
+      />
+      <Text style={GlobalStyles.header}>Create Account</Text>
       <TextInput
         label="Name"
         returnKeyType="next"
@@ -70,8 +70,7 @@ export default function RegisterScreen({ navigation }) {
       <Button
         mode="contained"
         onPress={onSignUpPressed}
-        style={{ marginTop: 24 }}
-      >
+        style={{ marginTop: 24 }}>
         Sign Up
       </Button>
       <View style={styles.row}>
@@ -80,17 +79,18 @@ export default function RegisterScreen({ navigation }) {
           <Text style={styles.link}>Login</Text>
         </TouchableOpacity>
       </View>
-    </Background>
+    </View>
   )
 }
 
-const styles = StyleSheet.create({
-  row: {
-    flexDirection: 'row',
-    marginTop: 4,
-  },
-  link: {
-    fontWeight: 'bold',
-    color: theme.colors.primary,
-  },
-})
+const makeStyles = (theme) =>
+  StyleSheet.create({
+    row: {
+      flexDirection: 'row',
+      marginTop: 4,
+    },
+    link: {
+      fontWeight: 'bold',
+      color: theme.colors.primary,
+    },
+  })

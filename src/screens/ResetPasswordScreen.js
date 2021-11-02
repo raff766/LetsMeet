@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
-import Background from '../components/Background'
-import BackButton from '../components/BackButton'
-import Logo from '../components/Logo'
-import Header from '../components/Header'
+import { Image, View } from 'react-native'
+import { Text } from 'react-native-paper'
 import TextInput from '../components/TextInput'
 import Button from '../components/Button'
 import { emailValidator } from '../helpers/emailValidator'
+import GlobalStyles from '../core/GlobalStyles'
 
 export default function ResetPasswordScreen({ navigation }) {
   const [email, setEmail] = useState({ value: '', error: '' })
@@ -20,10 +19,12 @@ export default function ResetPasswordScreen({ navigation }) {
   }
 
   return (
-    <Background>
-      <BackButton goBack={navigation.goBack} />
-      <Logo />
-      <Header>Restore Password</Header>
+    <View style={GlobalStyles.background}>
+      <Image
+        source={require('../assets/meetlogo.png')}
+        style={GlobalStyles.logo}
+      />
+      <Text style={GlobalStyles.header}>Restore Password</Text>
       <TextInput
         label="E-mail address"
         returnKeyType="done"
@@ -40,10 +41,9 @@ export default function ResetPasswordScreen({ navigation }) {
       <Button
         mode="contained"
         onPress={sendResetPasswordEmail}
-        style={{ marginTop: 16 }}
-      >
+        style={{ marginTop: 16 }}>
         Send Instructions
       </Button>
-    </Background>
+    </View>
   )
 }

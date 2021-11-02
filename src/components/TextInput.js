@@ -1,9 +1,10 @@
 import React from 'react'
 import { View, StyleSheet, Text } from 'react-native'
-import { TextInput as Input } from 'react-native-paper'
-import { theme } from '../core/theme'
+import { TextInput as Input, useTheme } from 'react-native-paper'
 
 export default function TextInput({ errorText, description, ...props }) {
+  const theme = useTheme()
+  const styles = makeStyles(theme)
   return (
     <View style={styles.container}>
       <Input
@@ -21,22 +22,23 @@ export default function TextInput({ errorText, description, ...props }) {
   )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    width: '100%',
-    marginVertical: 12,
-  },
-  input: {
-    backgroundColor: theme.colors.surface,
-  },
-  description: {
-    fontSize: 13,
-    color: theme.colors.secondary,
-    paddingTop: 8,
-  },
-  error: {
-    fontSize: 13,
-    color: theme.colors.error,
-    paddingTop: 8,
-  },
-})
+const makeStyles = (theme) =>
+  StyleSheet.create({
+    container: {
+      width: '100%',
+      marginVertical: 12,
+    },
+    input: {
+      backgroundColor: theme.colors.surface,
+    },
+    description: {
+      fontSize: 13,
+      color: theme.colors.secondary,
+      paddingTop: 8,
+    },
+    error: {
+      fontSize: 13,
+      color: theme.colors.error,
+      paddingTop: 8,
+    },
+  })

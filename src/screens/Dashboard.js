@@ -1,18 +1,20 @@
 import React from 'react'
-import Background from '../components/Background'
-import Logo from '../components/Logo'
-import Header from '../components/Header'
-import Paragraph from '../components/Paragraph'
+import { Image, View } from 'react-native'
+import { Text } from 'react-native-paper'
 import Button from '../components/Button'
+import GlobalStyles from '../core/GlobalStyles'
 
 export default function Dashboard({ navigation }) {
   return (
-    <Background>
-      <Logo />
-      <Header>Let’s start</Header>
-      <Paragraph>
+    <View style={GlobalStyles.background}>
+      <Image
+        source={require('../assets/meetlogo.png')}
+        style={GlobalStyles.logo}
+      />
+      <Text style={GlobalStyles.header}>Lets Start.</Text>
+      <Text style={GlobalStyles.paragraph}>
         You logged in, now it's time to make some new friends!
-      </Paragraph>
+      </Text>
       <Button
         mode="outlined"
         onPress={() =>
@@ -20,10 +22,9 @@ export default function Dashboard({ navigation }) {
             index: 0,
             routes: [{ name: 'StartScreen' }],
           })
-        }
-      >
+        }>
         Logout
       </Button>
-    </Background>
+    </View>
   )
 }

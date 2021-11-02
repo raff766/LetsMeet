@@ -1,8 +1,8 @@
 import React from 'react'
-import { Provider } from 'react-native-paper'
+import { Provider as PaperProvider } from 'react-native-paper'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
-import { theme } from './src/core/theme'
+import { LightTheme, DarkTheme } from './src/core/Themes'
 import {
   StartScreen,
   LoginScreen,
@@ -14,15 +14,24 @@ import {
 const Stack = createStackNavigator()
 
 export default function App() {
+  const [isDarkTheme, setIsDarkTheme] = React.useState(true)
+  const theme = isDarkTheme ? DarkTheme : LightTheme
+
   return (
-    <Provider theme={theme}>
-      <NavigationContainer>
+    <PaperProvider theme={theme}>
+      <NavigationContainer theme={theme}>
         <Stack.Navigator
           initialRouteName="StartScreen"
           screenOptions={{
-            headerShown: false,
-          }}
-        >
+            headerShown: true,
+            headerTitle: null,
+            headerStyle: {
+              height: 60,
+              elevation: 0,
+              shadowOpacity: 0,
+              borderBottomWidth: 0,
+            },
+          }}>
           <Stack.Screen name="StartScreen" component={StartScreen} />
           <Stack.Screen name="LoginScreen" component={LoginScreen} />
           <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
@@ -33,6 +42,6 @@ export default function App() {
           />
         </Stack.Navigator>
       </NavigationContainer>
-    </Provider>
+    </PaperProvider>
   )
 }

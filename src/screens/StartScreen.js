@@ -1,30 +1,28 @@
 import React from 'react'
-import Background from '../components/Background'
-import Logo from '../components/Logo'
-import Header from '../components/Header'
+import { Image, View } from 'react-native'
+import { Text } from 'react-native-paper'
 import Button from '../components/Button'
-import Paragraph from '../components/Paragraph'
+import GlobalStyles from '../core/GlobalStyles'
 
 export default function StartScreen({ navigation }) {
   return (
-    <Background>
-      <Logo />
-      <Header>Welcome</Header>
-      <Paragraph>
-        Start meeting people now!
-      </Paragraph>
+    <View style={GlobalStyles.background}>
+      <Image
+        source={require('../assets/meetlogo.png')}
+        style={GlobalStyles.logo}
+      />
+      <Text style={GlobalStyles.header}>Welcome</Text>
+      <Text style={GlobalStyles.paragraph}>Start meeting people now!</Text>
       <Button
         mode="contained"
-        onPress={() => navigation.navigate('LoginScreen')}
-      >
+        onPress={() => navigation.navigate('LoginScreen')}>
         Login
       </Button>
       <Button
         mode="outlined"
-        onPress={() => navigation.navigate('RegisterScreen')}
-      >
+        onPress={() => navigation.navigate('RegisterScreen')}>
         Sign Up
       </Button>
-    </Background>
+    </View>
   )
 }
