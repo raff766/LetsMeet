@@ -8,13 +8,14 @@ import {
   LoginScreen,
   RegisterScreen,
   ResetPasswordScreen,
-  Dashboard,
+  Home,
 } from './src/screens'
+import DashboardTab from './src/routes/DashboardTab'
 
 const Stack = createStackNavigator()
 
 export default function App() {
-  const [isDarkTheme, setIsDarkTheme] = React.useState(true)
+  const [isDarkTheme, setIsDarkTheme] = React.useState(false)
   const theme = isDarkTheme ? DarkTheme : LightTheme
 
   return (
@@ -35,7 +36,11 @@ export default function App() {
           <Stack.Screen name="StartScreen" component={StartScreen} />
           <Stack.Screen name="LoginScreen" component={LoginScreen} />
           <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
-          <Stack.Screen name="Dashboard" component={Dashboard} />
+          <Stack.Screen
+            options={{ headerShown: false }}
+            name="Dashboard"
+            component={DashboardTab}
+          />
           <Stack.Screen
             name="ResetPasswordScreen"
             component={ResetPasswordScreen}

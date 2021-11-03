@@ -4,7 +4,7 @@ import { Text } from 'react-native-paper'
 import Button from '../components/Button'
 import GlobalStyles from '../core/GlobalStyles'
 
-export default function Dashboard({ navigation }) {
+export default function Home({ navigation }) {
   return (
     <View style={GlobalStyles.background}>
       <Image
