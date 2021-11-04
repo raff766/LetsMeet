@@ -8,7 +8,6 @@ import {
   LoginScreen,
   RegisterScreen,
   ResetPasswordScreen,
-  Home,
 } from './src/screens'
 import DashboardTab from './src/routes/DashboardTab'
 
@@ -22,7 +21,7 @@ export default function App() {
     <PaperProvider theme={theme}>
       <NavigationContainer theme={theme}>
         <Stack.Navigator
-          initialRouteName="StartScreen"
+          initialRouteName="Dashboard"
           screenOptions={{
             headerShown: true,
             headerTitle: '',
