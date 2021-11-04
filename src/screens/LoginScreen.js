@@ -31,31 +31,27 @@ export default function LoginScreen({ navigation }) {
         style={GlobalStyles.logo}
       />
       <Text style={GlobalStyles.header}>Welcome back.</Text>
-      <View style={styles.container}>
-        <TextInput
-          label="Email"
-          returnKeyType="next"
-          value={email.value}
-          onChangeText={(text) => setEmail({ value: text, error: '' })}
-          error={!!email.error}
-          errorText={email.error}
-          autoCapitalize="none"
-          autoCompleteType="email"
-          textContentType="emailAddress"
-          keyboardType="email-address"
-        />
-      </View>
-      <View style={styles.container}>
-        <TextInput
-          label="Password"
-          returnKeyType="done"
-          value={password.value}
-          onChangeText={(text) => setPassword({ value: text, error: '' })}
-          error={!!password.error}
-          errorText={password.error}
-          secureTextEntry
-        />
-      </View>
+      <TextInput
+        label="Email"
+        returnKeyType="next"
+        value={email.value}
+        onChangeText={(text) => setEmail({ value: text, error: '' })}
+        error={!!email.error}
+        errorText={email.error}
+        autoCapitalize="none"
+        autoCompleteType="email"
+        textContentType="emailAddress"
+        keyboardType="email-address"
+      />
+      <TextInput
+        label="Password"
+        returnKeyType="done"
+        value={password.value}
+        onChangeText={(text) => setPassword({ value: text, error: '' })}
+        error={!!password.error}
+        errorText={password.error}
+        secureTextEntry
+      />
       <View style={styles.forgotPassword}>
         <TouchableOpacity
           onPress={() => navigation.navigate('ResetPasswordScreen')}>
@@ -88,27 +84,23 @@ const makeStyles = (theme) =>
     },
     forgot: {
       fontSize: 13,
-      color: theme.colors.secondary,
+      // color: theme.colors.secondary,
     },
     link: {
       fontWeight: 'bold',
       color: theme.colors.primary,
-    },
-    container: {
-      width: '100%',
-      marginVertical: 12,
     },
     input: {
       backgroundColor: theme.colors.surface,
     },
     description: {
       fontSize: 13,
-      color: theme.colors.secondary,
+      // color: theme.colors.secondary,
       paddingTop: 8,
     },
     error: {
       fontSize: 13,
-      color: theme.colors.error,
+      // color: theme.colors.error,
       paddingTop: 8,
     },
   })

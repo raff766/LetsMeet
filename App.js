@@ -14,6 +14,7 @@ import DashboardTab from './src/routes/DashboardTab'
 const Stack = createStackNavigator()
 
 export default function App() {
+  // eslint-disable-next-line no-unused-vars
   const [isDarkTheme, setIsDarkTheme] = React.useState(false)
   const theme = isDarkTheme ? DarkTheme : LightTheme
 
