@@ -13,14 +13,14 @@ export default StyleSheet.create({
     marginBottom: 8,
   },
   header: {
-    fontSize: 21,
+    fontSize: 25,
     fontWeight: 'bold',
     paddingVertical: 12,
   },
   paragraph: {
     fontSize: 15,
     lineHeight: 21,
-    textAlign: 'center',
+    textAlign: 'left',
     marginBottom: 12,
   },
 })
