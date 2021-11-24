@@ -10,6 +10,7 @@ import {
   ResetPasswordScreen,
 } from './src/screens'
 import DashboardTab from './src/routes/DashboardTab'
+import EventScreen from './src/screens/EventScreen'
 
 const Stack = createStackNavigator()
 
@@ -22,7 +23,7 @@ export default function App() {
     <PaperProvider theme={theme}>
       <NavigationContainer theme={theme}>
         <Stack.Navigator
-          initialRouteName="Dashboard"
+          initialRouteName="StartScreen"
           screenOptions={{
             headerShown: true,
             headerTitle: '',
@@ -45,6 +46,7 @@ export default function App() {
             name="ResetPasswordScreen"
             component={ResetPasswordScreen}
           />
+          <Stack.Screen name="EventScreen" component={EventScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </PaperProvider>
