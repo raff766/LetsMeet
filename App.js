@@ -11,6 +11,7 @@ import {
 } from './src/screens'
 import DashboardTab from './src/routes/DashboardTab'
 import EventScreen from './src/screens/EventScreen'
+import CreateEventScreen from './src/screens/CreateEventScreen'
 
 const Stack = createStackNavigator()
 
@@ -47,6 +48,10 @@ export default function App() {
             component={ResetPasswordScreen}
           />
           <Stack.Screen name="EventScreen" component={EventScreen} />
+          <Stack.Screen
+            name="CreateEventScreen"
+            component={CreateEventScreen}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </PaperProvider>

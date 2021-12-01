@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native'
 export default StyleSheet.create({
   background: {
     flex: 1,
-    width: '80%',
+    width: '90%',
     alignSelf: 'center',
     alignItems: 'center',
   },

@@ -10,14 +10,13 @@ export default function EventCard({ eventData, navigation }) {
       <Text style={styles.title}>{eventData.name}</Text>
       <Text>Date: {eventData.date}</Text>
       <Text>Host: {eventData.host}</Text>
-      <Text>{eventData.participants} People</Text>
+      <Text>{eventData.participants.length} People</Text>
     </TouchableOpacity>
   )
 }
 
 const styles = StyleSheet.create({
   card: {
-    alignSelf: 'flex-start',
     minWidth: '100%',
   },
   title: {
