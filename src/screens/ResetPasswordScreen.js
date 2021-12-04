@@ -4,7 +4,7 @@ import { Text } from 'react-native-paper'
 import TextInput from '../components/TextInput'
 import Button from '../components/Button'
 import { emailValidator } from '../helpers/emailValidator'
-import GlobalStyles from '../core/GlobalStyles'
+import GlobalStyles from '../styles/GlobalStyles'
 
 export default function ResetPasswordScreen({ navigation }) {
   const [email, setEmail] = useState({ value: '', error: '' })

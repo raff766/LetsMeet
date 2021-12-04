@@ -4,7 +4,7 @@ import { Text, useTheme } from 'react-native-paper'
 import Button from '../components/Button'
 import { emailValidator } from '../helpers/emailValidator'
 import { passwordValidator } from '../helpers/passwordValidator'
-import GlobalStyles from '../core/GlobalStyles'
+import GlobalStyles from '../styles/GlobalStyles'
 import TextInput from '../components/TextInput'
 
 export default function LoginScreen({ navigation }) {

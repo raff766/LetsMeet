@@ -2,7 +2,7 @@ import React from 'react'
 import { Image, View } from 'react-native'
 import { Text } from 'react-native-paper'
 import Button from '../components/Button'
-import GlobalStyles from '../core/GlobalStyles'
+import GlobalStyles from '../styles/GlobalStyles'
 
 export default function StartScreen({ navigation }) {
   return (

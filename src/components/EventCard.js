@@ -9,7 +9,7 @@ export default function EventCard({ eventData, navigation }) {
       onPress={() => navigation.navigate('EventScreen', eventData)}>
       <Text style={styles.title}>{eventData.name}</Text>
       <Text>Date: {eventData.date}</Text>
-      <Text>Host: {eventData.host}</Text>
+      <Text>Host: {eventData.host.name}</Text>
       <Text>{eventData.participants.length} People</Text>
     </TouchableOpacity>
   )

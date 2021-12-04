@@ -2,7 +2,7 @@ import React from 'react'
 import { Provider as PaperProvider } from 'react-native-paper'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
-import { LightTheme, DarkTheme } from './src/core/Themes'
+import { LightTheme, DarkTheme } from './src/styles/Themes'
 import {
   StartScreen,
   LoginScreen,

@@ -6,7 +6,7 @@ import TextInput from '../components/TextInput'
 import { emailValidator } from '../helpers/emailValidator'
 import { passwordValidator } from '../helpers/passwordValidator'
 import { nameValidator } from '../helpers/nameValidator'
-import GlobalStyles from '../core/GlobalStyles'
+import GlobalStyles from '../styles/GlobalStyles'
 
 export default function RegisterScreen({ navigation }) {
   const [name, setName] = useState({ value: '', error: '' })

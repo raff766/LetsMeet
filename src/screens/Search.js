@@ -2,7 +2,7 @@
 import React from 'react'
 import { View } from 'react-native'
 import { WebView } from 'react-native-webview'
-import GlobalStyles from '../core/GlobalStyles'
+import GlobalStyles from '../styles/GlobalStyles'
 
 export default function Search() {
   return (

@@ -1,97 +1,17 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import { Button, Text } from 'react-native-paper'
 import EventCard from '../components/EventCard'
-import GlobalStyles from '../core/GlobalStyles'
+import { REQUEST, requestData } from '../core/server'
+import GlobalStyles from '../styles/GlobalStyles'
 
 export default function Home({ navigation }) {
-  const [events, setEvents] = useState([
-    {
-      key: 0,
-      name: 'Test Event',
-      date: 'October 25, 2021',
-      description: 'Hey, everyone! Welcome to our test event!',
-      host: 'Raffi',
-      participants: [
-        { email: 'raff@gmail.com', name: 'Raffi' },
-        { email: 'Mau@gmail.com', name: 'Mau' },
-        { email: 'David@gmail.com', name: 'David' },
-      ],
-    },
-    {
-      key: 1,
-      name: 'Test Event',
-      date: 'October 25, 2021',
-      description: 'Hey, everyone! Welcome to our test event!',
-      host: 'Raffi',
-      participants: [
-        { email: 'raff@gmail.com', name: 'Raffi' },
-        { email: 'Mau@gmail.com', name: 'Mau' },
-        { email: 'David@gmail.com', name: 'David' },
-      ],
-    },
-    {
-      key: 2,
-      name: 'Test Event',
-      date: 'October 25, 2021',
-      description: 'Hey, everyone! Welcome to our test event!',
-      host: 'Raffi',
-      participants: [
-        { email: 'raff@gmail.com', name: 'Raffi' },
-        { email: 'Mau@gmail.com', name: 'Mau' },
-        { email: 'David@gmail.com', name: 'David' },
-      ],
-    },
-    {
-      key: 3,
-      name: 'Test Event',
-      date: 'October 25, 2021',
-      description: 'Hey, everyone! Welcome to our test event!',
-      host: 'Raffi',
-      participants: [
-        { email: 'raff@gmail.com', name: 'Raffi' },
-        { email: 'Mau@gmail.com', name: 'Mau' },
-        { email: 'David@gmail.com', name: 'David' },
-      ],
-    },
-    {
-      key: 4,
-      name: 'Test Event',
-      date: 'October 25, 2021',
-      description: 'Hey, everyone! Welcome to our test event!',
-      host: 'Raffi',
-      participants: [
-        { email: 'raff@gmail.com', name: 'Raffi' },
-        { email: 'Mau@gmail.com', name: 'Mau' },
-        { email: 'David@gmail.com', name: 'David' },
-      ],
-    },
-    {
-      key: 5,
-      name: 'Test Event',
-      date: 'October 25, 2021',
-      description: 'Hey, everyone! Welcome to our test event!',
-      host: 'Raffi',
-      participants: [
-        { email: 'raff@gmail.com', name: 'Raffi' },
-        { email: 'Mau@gmail.com', name: 'Mau' },
-        { email: 'David@gmail.com', name: 'David' },
-      ],
-    },
-    {
-      key: 6,
-      name: 'Test Event1',
-      date: 'October 25, 2021',
-      description: 'Hey, everyone! Welcome to our test event!',
-      host: 'Raffi',
-      participants: [
-        { email: 'raff@gmail.com', name: 'Raffi' },
-        { email: 'Mau@gmail.com', name: 'Mau' },
-        { email: 'David@gmail.com', name: 'David' },
-      ],
-    },
-  ])
+  const [events, setEvents] = useState([])
+  useEffect(
+    () => requestData(REQUEST.EVENT, (data) => setEvents(data.events)),
+    []
+  )
 
   return (
     <ScrollView
@@ -114,7 +34,7 @@ export default function Home({ navigation }) {
         </Button>
       </View>
       {events.map((event) => (
-        <View style={styles.eventCardView}>
+        <View key={event.eventid} style={styles.eventCardView}>
           <EventCard eventData={event} navigation={navigation} />
         </View>
       ))}
