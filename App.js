@@ -51,6 +51,9 @@ export default function App() {
           <Stack.Screen
             name="CreateEventScreen"
             component={CreateEventScreen}
+            options={{
+              headerTitle: 'New event',
+            }}
           />
         </Stack.Navigator>
       </NavigationContainer>

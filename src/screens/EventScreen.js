@@ -1,5 +1,6 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { Text } from 'react-native-paper'
+import { View } from 'react-native'
 import GlobalStyles from '../styles/GlobalStyles'
 
 export default function EventScreen({ route }) {

@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import { useFocusEffect } from '@react-navigation/core'
+import React, { useCallback, useState } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import { Button, Text } from 'react-native-paper'
@@ -8,9 +9,11 @@ import GlobalStyles from '../styles/GlobalStyles'
 
 export default function Home({ navigation }) {
   const [events, setEvents] = useState([])
-  useEffect(
-    () => requestData(REQUEST.EVENT, (data) => setEvents(data.events)),
-    []
+  useFocusEffect(
+    useCallback(
+      () => requestData(REQUEST.EVENT, (data) => setEvents(data.events)),
+      []
+    )
   )
 
   return (
@@ -18,18 +21,17 @@ export default function Home({ navigation }) {
       contentContainerStyle={{
         ...GlobalStyles.background,
         flex: 0,
-        alignItems: 'flex-start',
       }}>
       <View
         style={{
-          minWidth: '100%',
+          width: '100%',
           flexDirection: 'row',
           justifyContent: 'space-between',
         }}>
         <Text style={{ ...GlobalStyles.header, paddingVertical: 0 }}>
           Your Events
         </Text>
-        <Button onPress={() => navigation.navigate('CreateEventScreen')}>
+        <Button onPress={() => navigation.navigate('CreateEventScreen', {})}>
           Create
         </Button>
       </View>

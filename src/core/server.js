@@ -5,7 +5,7 @@ export const REQUEST = {
   USER: 1,
 }
 
-export async function requestData(requestType, setter, id) {
+export function requestData(requestType, setter, id) {
   if (!id) id = 'all'
   switch (requestType) {
     case REQUEST.EVENT:
@@ -38,7 +38,5 @@ export function sendData(requestType, data) {
     method: 'POST',
     headers: new Headers({ 'content-type': 'application/json' }),
     body: JSON.stringify(data),
-  })
-    .then((result) => console.log('Completed with result: ', result))
-    .catch((error) => console.log('POST Request Failed: ' + error))
+  }).catch((error) => console.log('POST Request Failed: ' + error))
 }
