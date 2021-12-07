@@ -31,7 +31,7 @@ export default function Home({ navigation }) {
         <Text style={{ ...GlobalStyles.header, paddingVertical: 0 }}>
           Your Events
         </Text>
-        <Button onPress={() => navigation.navigate('CreateEventScreen', {})}>
+        <Button onPress={() => navigation.navigate('CreateEventScreen')}>
           Create
         </Button>
       </View>

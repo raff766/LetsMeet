@@ -11,7 +11,7 @@ export default function DatePicker({ onPicked }) {
     const currentDate = selectedDate || date
     setShow(Platform.OS === 'ios')
     setDate(currentDate)
-    onPicked(date)
+    onPicked(currentDate)
   }
 
   return (

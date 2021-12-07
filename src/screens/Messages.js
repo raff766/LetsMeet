@@ -1,14 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Text, StyleSheet } from 'react-native'
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler'
+import MessageCard from '../components/MessageCard'
 
 export default function Messages() {
+  const [messages, setMessages] = useState([
+    { user: 'Raffi', message: 'Hello there' },
+    { user: 'David', message: 'Test' },
+    { user: 'Erick', message: '3' },
+    { user: 'Adrian', message: '4' },
+    { user: 'Mauricio', message: '5' },
+  ])
+
   return (
     <ScrollView>
-      <TouchableOpacity style={styles.message}>
-        <Text style={{ ...styles.text, fontWeight: 'bold' }}>Erika</Text>
-        <Text style={styles.text}>Hey how's it going!</Text>
-      </TouchableOpacity>
+      {messages.map((message) => (
+        <MessageCard name={message.user} message={message.message} />
+      ))}
     </ScrollView>
   )
 }

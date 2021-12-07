@@ -6,7 +6,7 @@ import GlobalStyles from '../styles/GlobalStyles'
 import DatePicker from '../components/DatePicker'
 import { REQUEST, sendData } from '../core/server'
 
-export default function CreateEventScreen() {
+export default function CreateEventScreen({ navigation }) {
   const [name, setName] = useState({ value: '', error: '' })
   const [description, setDescription] = useState({ value: '', error: '' })
   const [date, setDate] = useState(new Date())
@@ -19,6 +19,7 @@ export default function CreateEventScreen() {
       hostId: 1,
       participantIds: [1],
     })
+    navigation.goBack()
   }, [name, date, description])
 
   return (
