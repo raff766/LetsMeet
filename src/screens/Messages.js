@@ -5,11 +5,11 @@ import MessageCard from '../components/MessageCard'
 
 export default function Messages() {
   const [messages, setMessages] = useState([
-    { user: 'Raffi', message: 'Hello there' },
-    { user: 'David', message: 'Test' },
-    { user: 'Erick', message: '3' },
-    { user: 'Adrian', message: '4' },
-    { user: 'Mauricio', message: '5' },
+    { user: 'Raffi', message: 'Wazzzzaaaaaaap' },
+    { user: 'David', message: 'Yo lets meet up' },
+    { user: 'Erick', message: 'Where are you bro?' },
+    { user: 'Adrian', message: 'Sup my dud' },
+    { user: 'Mauricio', message: 'Bruh where are you, did you die?' },
   ])
 
   return (

@@ -1,23 +1,26 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useState, useContext } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { Button, Text } from 'react-native-paper'
 import TextInput from '../components/TextInput'
 import GlobalStyles from '../styles/GlobalStyles'
 import DatePicker from '../components/DatePicker'
 import { REQUEST, sendData } from '../core/server'
+import { UserContext } from '../core/UserContext'
 
 export default function CreateEventScreen({ navigation }) {
   const [name, setName] = useState({ value: '', error: '' })
   const [description, setDescription] = useState({ value: '', error: '' })
   const [date, setDate] = useState(new Date())
 
+  const { userId } = useContext(UserContext)
+
   const onSubmit = useCallback(() => {
     sendData(REQUEST.EVENT, {
       name: name.value,
       date: date.toISOString().slice(0, 10),
       description: description.value,
-      hostId: 1,
-      participantIds: [1],
+      hostId: userId,
+      participantIds: [userId],
     })
     navigation.goBack()
   }, [name, date, description])

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { TouchableOpacity, StyleSheet, View, Image } from 'react-native'
 import { Text, useTheme } from 'react-native-paper'
 import Button from '../components/Button'
@@ -6,10 +6,14 @@ import { emailValidator } from '../helpers/emailValidator'
 import { passwordValidator } from '../helpers/passwordValidator'
 import GlobalStyles from '../styles/GlobalStyles'
 import TextInput from '../components/TextInput'
+import { sendData, REQUEST } from '../core/server'
+import { UserContext } from '../core/UserContext'
 
 export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState({ value: '', error: '' })
   const [password, setPassword] = useState({ value: '', error: '' })
+
+  const { setUserId } = useContext(UserContext)
 
   const onLoginPressed = () => {
     const emailError = emailValidator(email.value)
@@ -19,7 +23,24 @@ export default function LoginScreen({ navigation }) {
       setPassword({ ...password, error: passwordError })
       return
     }
-    navigation.navigate('Dashboard')
+    sendData(REQUEST.LOGIN, {
+      email: email.value,
+      password: password.value,
+    }).then((userId) => {
+      if (userId !== -1) {
+        setUserId(userId)
+        navigation.navigate('Dashboard')
+      } else {
+        setEmail({
+          ...email,
+          error: 'This email and password combination does not exist.',
+        })
+        setPassword({
+          ...password,
+          error: 'This email and password combination does not exist.',
+        })
+      }
+    })
   }
 
   const styles = makeStyles(useTheme())

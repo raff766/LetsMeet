@@ -1,19 +1,23 @@
 import { useFocusEffect } from '@react-navigation/core'
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useState, useContext } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import { Button, Text } from 'react-native-paper'
 import EventCard from '../components/EventCard'
 import { REQUEST, requestData } from '../core/server'
+import { UserContext } from '../core/UserContext'
 import GlobalStyles from '../styles/GlobalStyles'
 
 export default function Home({ navigation }) {
   const [events, setEvents] = useState([])
+  const { userId } = useContext(UserContext)
+
   useFocusEffect(
-    useCallback(
-      () => requestData(REQUEST.EVENT, (data) => setEvents(data.events)),
-      []
-    )
+    useCallback(() => {
+      requestData(REQUEST.USEREVENTS, userId).then((data) => {
+        setEvents(data.events)
+      })
+    }, [])
   )
 
   return (

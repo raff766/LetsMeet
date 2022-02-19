@@ -12,6 +12,7 @@ import {
 import DashboardTab from './src/routes/DashboardTab'
 import EventScreen from './src/screens/EventScreen'
 import CreateEventScreen from './src/screens/CreateEventScreen'
+import { UserContextProvider } from './src/core/UserContext'
 
 const Stack = createStackNavigator()
 
@@ -21,42 +22,44 @@ export default function App() {
   const theme = isDarkTheme ? DarkTheme : LightTheme
 
   return (
-    <PaperProvider theme={theme}>
-      <NavigationContainer theme={theme}>
-        <Stack.Navigator
-          initialRouteName="StartScreen"
-          screenOptions={{
-            headerShown: true,
-            headerTitle: '',
-            headerStyle: {
-              height: 60,
-              elevation: 0,
-              shadowOpacity: 0,
-              borderBottomWidth: 0,
-            },
-          }}>
-          <Stack.Screen name="StartScreen" component={StartScreen} />
-          <Stack.Screen name="LoginScreen" component={LoginScreen} />
-          <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
-          <Stack.Screen
-            options={{ headerShown: false }}
-            name="Dashboard"
-            component={DashboardTab}
-          />
-          <Stack.Screen
-            name="ResetPasswordScreen"
-            component={ResetPasswordScreen}
-          />
-          <Stack.Screen name="EventScreen" component={EventScreen} />
-          <Stack.Screen
-            name="CreateEventScreen"
-            component={CreateEventScreen}
-            options={{
-              headerTitle: 'New event',
-            }}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </PaperProvider>
+    <UserContextProvider>
+      <PaperProvider theme={theme}>
+        <NavigationContainer theme={theme}>
+          <Stack.Navigator
+            initialRouteName="StartScreen"
+            screenOptions={{
+              headerShown: true,
+              headerTitle: '',
+              headerStyle: {
+                height: 60,
+                elevation: 0,
+                shadowOpacity: 0,
+                borderBottomWidth: 0,
+              },
+            }}>
+            <Stack.Screen name="StartScreen" component={StartScreen} />
+            <Stack.Screen name="LoginScreen" component={LoginScreen} />
+            <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
+            <Stack.Screen
+              options={{ headerShown: false }}
+              name="Dashboard"
+              component={DashboardTab}
+            />
+            <Stack.Screen
+              name="ResetPasswordScreen"
+              component={ResetPasswordScreen}
+            />
+            <Stack.Screen name="EventScreen" component={EventScreen} />
+            <Stack.Screen
+              name="CreateEventScreen"
+              component={CreateEventScreen}
+              options={{
+                headerTitle: 'New event',
+              }}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </PaperProvider>
+    </UserContextProvider>
   )
 }

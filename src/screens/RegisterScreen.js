@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { View, StyleSheet, TouchableOpacity, Image } from 'react-native'
 import { Text, useTheme } from 'react-native-paper'
 import Button from '../components/Button'
@@ -7,11 +7,15 @@ import { emailValidator } from '../helpers/emailValidator'
 import { passwordValidator } from '../helpers/passwordValidator'
 import { nameValidator } from '../helpers/nameValidator'
 import GlobalStyles from '../styles/GlobalStyles'
+import { sendData, REQUEST } from '../core/server'
+import { UserContext } from '../core/UserContext'
 
 export default function RegisterScreen({ navigation }) {
   const [name, setName] = useState({ value: '', error: '' })
   const [email, setEmail] = useState({ value: '', error: '' })
   const [password, setPassword] = useState({ value: '', error: '' })
+
+  const { setUserId } = useContext(UserContext)
 
   const onSignUpPressed = () => {
     const nameError = nameValidator(name.value)
@@ -23,7 +27,21 @@ export default function RegisterScreen({ navigation }) {
       setPassword({ ...password, error: passwordError })
       return
     }
-    navigation.navigate('Dashboard')
+    sendData(REQUEST.USER, {
+      name: name.value,
+      email: email.value,
+      password: password.value,
+    }).then((userId) => {
+      if (userId !== -1) {
+        setUserId(userId)
+        navigation.navigate('Dashboard')
+      } else {
+        setEmail({
+          ...email,
+          error: 'This email address is already being used.',
+        })
+      }
+    })
   }
 
   const styles = makeStyles(useTheme())
