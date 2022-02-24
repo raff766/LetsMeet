@@ -13,6 +13,7 @@ import DashboardTab from './src/routes/DashboardTab'
 import EventScreen from './src/screens/EventScreen'
 import CreateEventScreen from './src/screens/CreateEventScreen'
 import { UserContextProvider } from './src/core/UserContext'
+import ChatScreen from './src/screens/ChatScreen'
 
 const Stack = createStackNavigator()
 
@@ -55,6 +56,13 @@ export default function App() {
               component={CreateEventScreen}
               options={{
                 headerTitle: 'New event',
+              }}
+            />
+            <Stack.Screen
+              name="ChatScreen"
+              component={ChatScreen}
+              options={({ route }) => {
+                return { headerTitle: route.params }
               }}
             />
           </Stack.Navigator>
