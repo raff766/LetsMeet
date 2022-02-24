@@ -51,5 +51,8 @@ export default function Home({ navigation }) {
 const styles = StyleSheet.create({
   eventCardView: {
     marginVertical: 10,
+    backgroundColor: '#ade',
+    padding: 12,
+    borderRadius: 10,
   },
 })
