@@ -6,7 +6,7 @@ import { StyleSheet } from 'react-native'
 import { REQUEST, sendData } from '../core/server'
 import { UserContext } from '../core/UserContext'
 
-export default function EventScreen({ route }) {
+export default function EventScreen({ route, navigation }) {
   const eventData = route.params
   const { userId } = useContext(UserContext)
 
@@ -15,6 +15,7 @@ export default function EventScreen({ route }) {
       eventid: eventData['eventid'],
       userid: userId,
     })
+    navigation.goBack()
   }, [])
 
   return (
