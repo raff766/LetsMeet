@@ -1,21 +1,21 @@
-import React from 'react'
+import React, { useCallback, useContext } from 'react'
 import { Button, Text } from 'react-native-paper'
 import { View } from 'react-native'
 import GlobalStyles from '../styles/GlobalStyles'
 import { StyleSheet } from 'react-native'
+import { REQUEST, sendData } from '../core/server'
 import { UserContext } from '../core/UserContext'
 
 export default function EventScreen({ route }) {
   const eventData = route.params
-  
-  const onSubmit = useCallback(() => {
-    const { userId } = useContext(UserContext)
-    sendData(REQUEST.EVENT, {
+  const { userId } = useContext(UserContext)
+
+  const removeEvent = useCallback(() => {
+    sendData(REQUEST.REMOVEEVENT, {
+      eventid: eventData['eventid'],
       userid: userId,
-      eventid: eventData["eventid"],
     })
-    navigation.goBack()
-  }, )
+  }, [])
 
   return (
     <View style={{ ...GlobalStyles.background, alignItems: 'flex-start'}}>
@@ -25,7 +25,7 @@ export default function EventScreen({ route }) {
           justifyContent: 'space-between',
         }}>
         <Text style={GlobalStyles.header}>{eventData.name}</Text>
-        <Button color='red' onPress={() => console.log("Leave Button Pressed")}>
+        <Button color='red' onPress={removeEvent}>
           Leave
         </Button>
       </View>

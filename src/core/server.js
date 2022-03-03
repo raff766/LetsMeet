@@ -1,11 +1,12 @@
 /* eslint-disable no-console */
-const SERVER_IP = '192.168.1.3:5000'
+const SERVER_IP = '54.176.214.194:5000'
 
 export const REQUEST = {
   EVENT: 0,
   USER: 1,
   USEREVENTS: 2,
   LOGIN: 3,
+  REMOVEEVENT: 4,
 }
 
 export async function requestData(requestType, id) {
@@ -35,6 +36,9 @@ export async function sendData(requestType, data) {
   switch (requestType) {
     case REQUEST.EVENT:
       requestType = 'post?type=event'
+      break
+    case REQUEST.REMOVEEVENT:
+      requestType = 'post?type=removeevent'
       break
     case REQUEST.USER:
       requestType = 'post?type=user'
