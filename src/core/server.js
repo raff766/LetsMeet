@@ -1,12 +1,13 @@
 /* eslint-disable no-console */
-const SERVER_IP = '54.176.214.194:5000'
+const SERVER_IP = '10.40.150.240:5000'
 
 export const REQUEST = {
   EVENT: 0,
   USER: 1,
   USEREVENTS: 2,
   LOGIN: 3,
-  REMOVEEVENT: 4,
+  LEAVEEVENT: 4,
+  REMOVEEVENT: 5,
 }
 
 export async function requestData(requestType, id) {
@@ -37,14 +38,17 @@ export async function sendData(requestType, data) {
     case REQUEST.EVENT:
       requestType = 'post?type=event'
       break
-    case REQUEST.REMOVEEVENT:
-      requestType = 'post?type=removeevent'
-      break
     case REQUEST.USER:
       requestType = 'post?type=user'
       break
     case REQUEST.LOGIN:
       requestType = 'post?type=login'
+      break
+    case REQUEST.LEAVEEVENT:
+      requestType = 'post?type=leaveevent'
+      break
+    case REQUEST.REMOVEEVENT:
+      requestType = 'post?type=removeevent'
       break
     default:
       throw new Error('Invalid request type!')

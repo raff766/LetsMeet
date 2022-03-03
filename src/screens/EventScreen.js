@@ -1,8 +1,7 @@
 import React, { useCallback, useContext } from 'react'
 import { Button, Text } from 'react-native-paper'
-import { View } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import GlobalStyles from '../styles/GlobalStyles'
-import { StyleSheet } from 'react-native'
 import { REQUEST, sendData } from '../core/server'
 import { UserContext } from '../core/UserContext'
 
@@ -19,14 +18,15 @@ export default function EventScreen({ route, navigation }) {
   }, [])
 
   return (
-    <View style={{ ...GlobalStyles.background, alignItems: 'flex-start'}}>
-      <View style={{
+    <View style={{ ...GlobalStyles.background, alignItems: 'flex-start' }}>
+      <View
+        style={{
           width: '100%',
           flexDirection: 'row',
           justifyContent: 'space-between',
         }}>
         <Text style={GlobalStyles.header}>{eventData.name}</Text>
-        <Button color='red' onPress={removeEvent}>
+        <Button color="red" onPress={removeEvent}>
           Leave
         </Button>
       </View>
