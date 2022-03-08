@@ -23,7 +23,14 @@ export default function EventScreen({ route, navigation }) {
     }).then(() => navigation.goBack())
   }
 
-  const leaveRemoveButton = () => {
+  const joinEvent = () => {
+    sendData(REQUEST.PARTICIPANT, {
+      eventid: eventData['eventid'],
+      userid: userId,
+    }).then(() => navigation.goBack())
+  }
+
+  const actionButton = () => {
     if (userId === eventData.host.userid) {
       return (
         <Button color="red" onPress={removeEvent}>
@@ -31,9 +38,16 @@ export default function EventScreen({ route, navigation }) {
         </Button>
       )
     }
+    if (eventData.participants.includes(userId, 0)) {
+      return (
+        <Button color="red" onPress={leaveEvent}>
+          Leave
+        </Button>
+      )
+    }
     return (
-      <Button color="red" onPress={leaveEvent}>
-        Leave
+      <Button color="blue" onPress={joinEvent}>
+        Join
       </Button>
     )
   }
@@ -47,7 +61,7 @@ export default function EventScreen({ route, navigation }) {
           justifyContent: 'space-between',
         }}>
         <Text style={GlobalStyles.header}>{eventData.name}</Text>
-        {leaveRemoveButton()}
+        {actionButton()}
       </View>
       <View style={styles.eventInfo}>
         <Text>Host: {eventData.host.name}</Text>

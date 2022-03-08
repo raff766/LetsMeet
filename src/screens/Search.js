@@ -1,20 +1,57 @@
 /* eslint-disable react/jsx-boolean-value */
-import React from 'react'
-import { View } from 'react-native'
+import { useFocusEffect } from '@react-navigation/core'
+import React, { useState, useContext, useCallback } from 'react'
+import { View, StyleSheet } from 'react-native'
+import { ScrollView } from 'react-native-gesture-handler'
+import { Button, Text } from 'react-native-paper'
 import { WebView } from 'react-native-webview'
+import EventCard from '../components/EventCard'
+import { REQUEST, requestData } from '../core/server'
+import { UserContext } from '../core/UserContext'
 import GlobalStyles from '../styles/GlobalStyles'
 
-export default function Search() {
+export default function Search({ navigation }) {
+  const [events, setEvents] = useState([])
+  const { userId } = useContext(UserContext)
+
+  useFocusEffect(
+    useCallback(() => {
+      requestData(REQUEST.EVENT).then((data) => {
+        setEvents(data.events)
+      })
+    }, [])
+  )
+
   return (
-    <View style={GlobalStyles.background}>
-      <WebView
-        style={{ width: 420, height: 230, flex: 1 }}
-        javaScriptEnabled={true}
-        domStorageEnabled={true}
-        source={{
-          uri: 'https://www.google.com/maps/@34.2449095,-118.5258363,13.79z',
-        }}
-      />
-    </View>
+    <ScrollView
+      contentContainerStyle={{
+        ...GlobalStyles.background,
+        flex: 0,
+      }}>
+      <View
+        style={{
+          width: '100%',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+        }}>
+        <Text style={{ ...GlobalStyles.header, paddingVertical: 0 }}>
+          Search For Events
+        </Text>
+      </View>
+      {events.map((event) => (
+        <View key={event.eventid} style={styles.eventCardView}>
+          <EventCard eventData={event} navigation={navigation} />
+        </View>
+      ))}
+    </ScrollView>
   )
 }
+
+const styles = StyleSheet.create({
+  eventCardView: {
+    marginVertical: 10,
+    backgroundColor: '#ade',
+    padding: 12,
+    borderRadius: 10,
+  },
+})

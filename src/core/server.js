@@ -8,6 +8,7 @@ export const REQUEST = {
   LOGIN: 3,
   LEAVEEVENT: 4,
   REMOVEEVENT: 5,
+  PARTICIPANT: 6,
 }
 
 export async function requestData(requestType, id) {
@@ -40,6 +41,9 @@ export async function sendData(requestType, data) {
       break
     case REQUEST.USER:
       requestType = 'post?type=user'
+      break
+    case REQUEST.PARTICIPANT:
+      requestType = 'post?type=participant'
       break
     case REQUEST.LOGIN:
       requestType = 'post?type=login'
