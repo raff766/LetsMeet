@@ -1,4 +1,4 @@
-import React, { useCallback, useContext } from 'react'
+import React, { useContext } from 'react'
 import { Button, Text } from 'react-native-paper'
 import { View, StyleSheet } from 'react-native'
 import GlobalStyles from '../styles/GlobalStyles'
@@ -9,13 +9,34 @@ export default function EventScreen({ route, navigation }) {
   const eventData = route.params
   const { userId } = useContext(UserContext)
 
-  const removeEvent = useCallback(() => {
+  const removeEvent = () => {
     sendData(REQUEST.REMOVEEVENT, {
       eventid: eventData['eventid'],
       userid: userId,
-    })
-    navigation.goBack()
-  }, [])
+    }).then(() => navigation.goBack())
+  }
+
+  const leaveEvent = () => {
+    sendData(REQUEST.LEAVEEVENT, {
+      eventid: eventData['eventid'],
+      userid: userId,
+    }).then(() => navigation.goBack())
+  }
+
+  const leaveRemoveButton = () => {
+    if (userId === eventData.host.userid) {
+      return (
+        <Button color="red" onPress={removeEvent}>
+          Delete
+        </Button>
+      )
+    }
+    return (
+      <Button color="red" onPress={leaveEvent}>
+        Leave
+      </Button>
+    )
+  }
 
   return (
     <View style={{ ...GlobalStyles.background, alignItems: 'flex-start' }}>
@@ -26,9 +47,7 @@ export default function EventScreen({ route, navigation }) {
           justifyContent: 'space-between',
         }}>
         <Text style={GlobalStyles.header}>{eventData.name}</Text>
-        <Button color="red" onPress={removeEvent}>
-          Leave
-        </Button>
+        {leaveRemoveButton()}
       </View>
       <View style={styles.eventInfo}>
         <Text>Host: {eventData.host.name}</Text>
