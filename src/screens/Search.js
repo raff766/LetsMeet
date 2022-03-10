@@ -38,11 +38,14 @@ export default function Search({ navigation }) {
           Search For Events
         </Text>
       </View>
-      {events.map((event) => (
-        <View key={event.eventid} style={styles.eventCardView}>
-          <EventCard eventData={event} navigation={navigation} />
-        </View>
-      ))}
+      {events.flatMap((event) => {
+        if (event.participants.some((user) => user.userid === userId)) return []
+        return (
+          <View key={event.eventid} style={styles.eventCardView}>
+            <EventCard eventData={event} navigation={navigation} />
+          </View>
+        )
+      })}
     </ScrollView>
   )
 }

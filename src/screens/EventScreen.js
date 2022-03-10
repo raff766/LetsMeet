@@ -38,7 +38,8 @@ export default function EventScreen({ route, navigation }) {
         </Button>
       )
     }
-    if (eventData.participants.includes(userId, 0)) {
+
+    if (eventData.participants.some((user) => user.userid === userId)) {
       return (
         <Button color="red" onPress={leaveEvent}>
           Leave
