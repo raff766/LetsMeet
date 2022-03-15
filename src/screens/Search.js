@@ -3,8 +3,7 @@ import { useFocusEffect } from '@react-navigation/core'
 import React, { useState, useContext, useCallback } from 'react'
 import { View, StyleSheet } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
-import { Button, Text } from 'react-native-paper'
-import { WebView } from 'react-native-webview'
+import { Button, Text, TextInput } from 'react-native-paper'
 import EventCard from '../components/EventCard'
 import { REQUEST, requestData } from '../core/server'
 import { UserContext } from '../core/UserContext'
@@ -12,6 +11,7 @@ import GlobalStyles from '../styles/GlobalStyles'
 
 export default function Search({ navigation }) {
   const [events, setEvents] = useState([])
+  const [textFilter, setTextFilter] = useState('')
   const { userId } = useContext(UserContext)
 
   useFocusEffect(
@@ -21,7 +21,6 @@ export default function Search({ navigation }) {
       })
     }, [])
   )
-
   return (
     <ScrollView
       contentContainerStyle={{
@@ -31,15 +30,22 @@ export default function Search({ navigation }) {
       <View
         style={{
           width: '100%',
-          flexDirection: 'row',
+          flexDirection: 'column',
           justifyContent: 'space-between',
         }}>
         <Text style={{ ...GlobalStyles.header, paddingVertical: 0 }}>
           Search For Events
         </Text>
+        <TextInput
+          label="Search"
+          value={textFilter}
+          onChangeText={(text) => setTextFilter(text)}
+        />
       </View>
       {events.flatMap((event) => {
         if (event.participants.some((user) => user.userid === userId)) return []
+        if (!event.name.toLowerCase().includes(textFilter.toLocaleLowerCase()))
+          return []
         return (
           <View key={event.eventid} style={styles.eventCardView}>
             <EventCard eventData={event} navigation={navigation} />
