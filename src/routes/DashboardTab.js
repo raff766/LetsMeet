@@ -1,15 +1,33 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons'
 import React from 'react'
-import { Image } from 'react-native'
+import { Image, View } from 'react-native'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 import { Search, Home, Messages } from '../screens'
+import profilestyles from '../styles/profilestyles'
 
 const Tab = createBottomTabNavigator()
 
-export default function DashboardTab() {
+export default function DashboardTab({ navigation }) {
   return (
     <Tab.Navigator
       screenOptions={{
+        headerLeft: () => (
+          <TouchableOpacity
+            style={{ width: 55, height: 55, marginLeft: 10 }}
+            onPress={() => navigation.navigate('Profile')}>
+            <Image
+              style={{
+                ...profilestyles.avatar,
+                width: 55,
+                height: 55,
+              }}
+              source={{
+                uri: 'https://bootdey.com/img/Content/avatar/avatar6.png',
+              }}
+            />
+          </TouchableOpacity>
+        ),
         headerTitleAlign: 'center',
         headerTitle: () => (
           <Image

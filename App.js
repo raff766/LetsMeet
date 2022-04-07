@@ -14,6 +14,7 @@ import EventScreen from './src/screens/EventScreen'
 import CreateEventScreen from './src/screens/CreateEventScreen'
 import { UserContextProvider } from './src/core/UserContext'
 import ChatScreen from './src/screens/ChatScreen'
+import Profile from './src/screens/Profile'
 
 const Stack = createStackNavigator()
 
@@ -65,6 +66,7 @@ export default function App() {
                 return { headerTitle: route.params }
               }}
             />
+            <Stack.Screen name="Profile" component={Profile} />
           </Stack.Navigator>
         </NavigationContainer>
       </PaperProvider>
