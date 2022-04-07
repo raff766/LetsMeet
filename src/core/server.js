@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-const SERVER_IP = '10.40.150.240:5000'
+const SERVER_IP = '54.177.40.94:5000'
 
 export const REQUEST = {
   EVENT: 0,
@@ -9,6 +9,7 @@ export const REQUEST = {
   LEAVEEVENT: 4,
   REMOVEEVENT: 5,
   PARTICIPANT: 6,
+  CONVERSATIONS: 7,
 }
 
 export async function requestData(requestType, id) {
@@ -22,6 +23,9 @@ export async function requestData(requestType, id) {
       break
     case REQUEST.USEREVENTS:
       requestType = 'get?event=userevents&user='
+      break
+    case REQUEST.CONVERSATIONS:
+      requestType = 'get?event=conversations&user='
       break
     default:
       throw new Error('Invalid request type!')
