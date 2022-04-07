@@ -1,10 +1,11 @@
 import React from 'react'
 import { Text, View, Image, TextInput} from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
-import Profile from './Profile'
 import { profilestyles } from '../../styles/ProfileStyle'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import { Colors } from 'react-native/Libraries/NewAppScreen'
+// possible import from Profile.js
+
+// change all profilestyles into GlobalStyles
 
 // Allows to edit thet profile screen
 
