@@ -3,6 +3,10 @@ import { Text, View, Image} from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { profilestyles } from '../../styles/ProfileStyle'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import PEdit from '../../screens/Profile'
+
+// change all profilestyles into GlobalStyles
+
 
 export default function Profile({route, navigation }) {
   let name = route.params
@@ -24,13 +28,6 @@ export default function Profile({route, navigation }) {
                 <Text style={profilestyles.description}>- Likes Music, Hanging out with friends and sleeping.</Text>
             </View>
             <View style={profilestyles.bodyContent}>
-              {/*               
-              <TouchableOpacity style={profilestyles.buttonContainer}>
-                <Text>College Student</Text> 
-              </TouchableOpacity>
-              <TouchableOpacity style={profilestyles.buttonContainer}>
-                <Text>Outgoing</Text> 
-              </TouchableOpacity> */}
             </View>
         </View>
       </View>
