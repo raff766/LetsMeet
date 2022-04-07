@@ -1,87 +1,81 @@
 import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
-
-pcontainer:{
+  pcontainer: {
     flex: 1,
     margin: 20,
   },
-  header:{
-    backgroundColor: "#8F35F3",
-    height:100,
+  header: {
+    backgroundColor: '#8F35F3',
+    height: 100,
   },
   avatar: {
     width: 100,
     height: 100,
     borderRadius: 63,
     borderWidth: 4,
-    borderColor: "white",
+    borderColor: 'white',
     marginBottom: 10,
-    alignSelf:'flex-start',
+    alignSelf: 'flex-start',
     position: 'absolute',
-    marginTop:45
+    marginTop: 45,
   },
   avataredit: {
     width: 100,
     height: 100,
     borderRadius: 60,
     borderWidth: 4,
-    borderColor: "white",
-    alignSelf:'center',
-  },      
-  name:{
-    fontSize:22,
-    color:"#FFFFFF",
-    fontWeight:'600',
+    borderColor: 'white',
+    alignSelf: 'center',
   },
-  body:{
-    marginTop:40,
+  name: {
+    fontSize: 22,
+    color: '#FFFFFF',
+    fontWeight: '600',
+  },
+  body: {
+    marginTop: 40,
   },
   bodyContent: {
     flex: 1,
     alignItems: 'center',
-    padding:30,
+    padding: 30,
   },
-  name:{
-    fontSize:28,
-    color: "#696969",
-    fontWeight: "600",
-  },
-  info:{
-    fontSize:18,
-    color: "#696969",
-    marginTop:10,
+  info: {
+    fontSize: 18,
+    color: '#696969',
+    marginTop: 10,
     textAlign: 'left',
     marginLeft: 20,
   },
-  description:{
-    fontSize:18,
-    color: "#696969",
-    marginTop:10,
+  description: {
+    fontSize: 18,
+    color: '#696969',
+    marginTop: 10,
     textAlign: 'left',
     marginLeft: 20,
   },
   buttonContainer: {
-    marginTop:54,
-    height:45,
-    alignSelf:'flex-end',
+    marginTop: 54,
+    height: 45,
+    alignSelf: 'flex-end',
     justifyContent: 'center',
     alignItems: 'center',
-    width:90,
-    borderRadius:20,
-    backgroundColor: "#F3ED35",
+    width: 90,
+    borderRadius: 20,
+    backgroundColor: '#F3ED35',
   },
-  cameraIcon:{
+  cameraIcon: {
     opacity: 0.5,
     alignItems: 'center',
     marginTop: 0,
-    top:0,
+    top: 0,
   },
-  UICenter:{
+  UICenter: {
     alignItems: 'center',
     margin: 20,
   },
-  Editcontent:{
+  Editcontent: {
     borderRadius: 2,
     alignItems: 'flex-end',
   },
