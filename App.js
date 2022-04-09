@@ -63,7 +63,7 @@ export default function App() {
               name="ChatScreen"
               component={ChatScreen}
               options={({ route }) => {
-                return { headerTitle: route.params }
+                return { headerTitle: route.params['name'] }
               }}
             />
             <Stack.Screen name="Profile" component={Profile} />

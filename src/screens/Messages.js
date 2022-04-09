@@ -25,6 +25,7 @@ export default function Messages({ navigation }) {
           <MessageCard
             name={message.user}
             message={message.message}
+            convoId={message.convoid}
             navigation={navigation}
           />
         </View>

@@ -2,11 +2,11 @@ import React from 'react'
 import { Text, StyleSheet, View } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 
-export default function MessageCard({ name, message, navigation }) {
+export default function MessageCard({ name, message, convoId, navigation }) {
   return (
     <View>
       <TouchableOpacity
-        onPress={() => navigation.navigate('ChatScreen', name)}
+        onPress={() => navigation.navigate('ChatScreen', { name, convoId } )}
         style={styles.message}>
         <Text style={{ ...styles.text, fontWeight: 'bold' }}>{name}</Text>
         <Text style={styles.text}>{message}</Text>

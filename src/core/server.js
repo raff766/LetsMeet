@@ -10,6 +10,7 @@ export const REQUEST = {
   REMOVEEVENT: 5,
   PARTICIPANT: 6,
   CONVERSATIONS: 7,
+  MESSAGES: 8,
 }
 
 export async function requestData(requestType, id) {
@@ -26,6 +27,9 @@ export async function requestData(requestType, id) {
       break
     case REQUEST.CONVERSATIONS:
       requestType = 'get?event=conversations&user='
+      break
+    case REQUEST.MESSAGES:
+      requestType = 'get?event=messages&user='
       break
     default:
       throw new Error('Invalid request type!')
