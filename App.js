@@ -15,6 +15,7 @@ import CreateEventScreen from './src/screens/CreateEventScreen'
 import { UserContextProvider } from './src/core/UserContext'
 import ChatScreen from './src/screens/ChatScreen'
 import Profile from './src/screens/Profile'
+import PEdit from './src/screens/PEdit'
 
 const Stack = createStackNavigator()
 
@@ -67,6 +68,7 @@ export default function App() {
               }}
             />
             <Stack.Screen name="Profile" component={Profile} />
+            <Stack.Screen name="PEdit" component={PEdit} />
           </Stack.Navigator>
         </NavigationContainer>
       </PaperProvider>

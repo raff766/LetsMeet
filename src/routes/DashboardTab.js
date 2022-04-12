@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons'
 import React from 'react'
-import { Image, View } from 'react-native'
+import { Image } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { Search, Home, Messages } from '../screens'
 import profilestyles from '../styles/profilestyles'
@@ -21,6 +21,7 @@ export default function DashboardTab({ navigation }) {
                 ...profilestyles.avatar,
                 width: 55,
                 height: 55,
+                marginTop: 0,
               }}
               source={{
                 uri: 'https://bootdey.com/img/Content/avatar/avatar6.png',
