@@ -1,6 +1,6 @@
 /* eslint-disable no-shadow */
 import { useFocusEffect } from '@react-navigation/core'
-import React, { useState, useCallback, useContext} from 'react'
+import React, { useEffect, useState, useCallback, useContext} from 'react'
 import { GiftedChat } from 'react-native-gifted-chat'
 import { socket, REQUEST, requestData } from '../core/server'
 import { UserContext } from '../core/UserContext'
@@ -39,11 +39,13 @@ export default function ChatScreen({ route }) {
     )
     console.log(messages);
   }, [])
-  
-  socket.once(String(userId) + String(convoData['convoId']), (msg) => {
-    console.log(msg)
-    onGetMsg(msg)
-  })
+
+  useEffect(() => {
+    socket.on(String(userId) + String(convoData['convoId']), (msg) => {
+      console.log(msg)
+      onGetMsg(msg)
+    })
+  }, [socket])
 
   return (
     <GiftedChat
