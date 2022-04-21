@@ -1,17 +1,14 @@
 /* eslint-disable no-shadow */
 import { useFocusEffect } from '@react-navigation/core'
-import React, { useState, useCallback } from 'react'
+import React, { useEffect, useState, useCallback, useContext} from 'react'
 import { GiftedChat } from 'react-native-gifted-chat'
-import { REQUEST, requestData } from '../core/server'
-
-// chat now displays, need to figure out a way to store the message or for now have the
-// messages sent be stored - ie leave message leave page and messages remain there when \
-// returning to original user chat
-// Also for some reason "Send" is only showing "Sen"
+import { socket, REQUEST, requestData } from '../core/server'
+import { UserContext } from '../core/UserContext'
 
 export default function ChatScreen({ route }) {
   const convoData = route.params
   const [messages, setMessages] = useState([])
+  const { userId } = useContext(UserContext)
 
   useFocusEffect(
     useCallback(() => {
@@ -21,18 +18,41 @@ export default function ChatScreen({ route }) {
     }, [])
   )
 
+  socket.on('connect', () => {
+    console.log('Connected:', socket.connected);
+  });
+
   const onSend = useCallback((messages = []) => {
     setMessages((previousMessages) =>
       GiftedChat.append(previousMessages, messages)
     )
+    socket.emit('send', {'fromUid':userId, 
+                        'toUid':String(convoData['userId']), 
+                        'convoId':String(convoData['convoId']), 
+                        'message':messages});
+    console.log("Sent message!!!!!!");
   }, [])
+
+  const onGetMsg = useCallback((messages = []) => {
+    setMessages((previousMessages) =>
+      GiftedChat.append(previousMessages, messages['message'][0])
+    )
+    console.log(messages);
+  }, [])
+
+  useEffect(() => {
+    socket.on(String(userId) + String(convoData['convoId']), (msg) => {
+      console.log(msg)
+      onGetMsg(msg)
+    })
+  }, [socket])
 
   return (
     <GiftedChat
       messages={messages}
       onSend={(messages) => onSend(messages)}
       user={{
-        _id: 1,
+        _id: userId,
       }}
     />
   )

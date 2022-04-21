@@ -1,5 +1,8 @@
 /* eslint-disable no-console */
-const SERVER_IP = '10.40.149.92:5000'
+import io from 'socket.io-client'
+
+const SERVER_IP = '54.177.40.94:5000'
+export const socket = io('http://' + SERVER_IP)
 
 export const REQUEST = {
   EVENT: 0,

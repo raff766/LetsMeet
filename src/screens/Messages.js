@@ -26,6 +26,7 @@ export default function Messages({ navigation }) {
             name={message.user}
             message={message.message}
             convoId={message.convoid}
+            userId={message.userid}
             navigation={navigation}
           />
         </View>
