@@ -2,6 +2,7 @@ import React from 'react'
 import { Text, View, Image, TextInput } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import TagCard from '../components/TagCard'
 import profilestyles from '../styles/profilestyles'
 // possible import from Profile.js
 
@@ -46,11 +47,16 @@ export default function PEdit({ route }) {
         <View style={profilestyles.action}>
           <Icon name="lead-pencil" color="black" size={25} />
           <TextInput
-            placeholder="Bio/Description"
-            placeholderTextColor="#666666"
+            placeholder='Bio/Description'
+            placeholderTextColor='#666666'
+            multiline={true}
             autoCorrect={false}
-            style={profilestyles.textInput}
+            style={profilestyles.input}
           />
+        </View>
+        <View>
+          <Icon name="tag-multiple" color="black" size={25}/>
+          <TagCard></TagCard>
         </View>
       </View>
     </View>

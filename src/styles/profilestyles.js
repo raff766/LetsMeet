@@ -91,4 +91,29 @@ export default StyleSheet.create({
     alignSelf: 'flex-end',
     marginTop: 50,
   },
+  tag:{
+    backgroundColor: '#2A5353',
+    borderRadius: 10,
+    padding: 10,
+    margin: 10,
+  },
+  taginput:{
+    backgroundColor: '#FFFFFF',
+    color: '#606060',
+    fontWeight: 'bold',
+  },
+  textTag:{
+    color: '#EBEBEB',
+    fontWeight: 'bold',
+  },
+  tagContainer:{
+    margin: 10,
+    borderRadius: 10,
+    backgroundColor: '#FFFFFF',
+    justifyContent: 'flex-start',
+  },
+  screen:{
+    flex: 1,
+    backgroundColor: '#D6D6D6'
+  },
 })
