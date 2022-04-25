@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { Button, Text } from 'react-native-paper'
 import { View, StyleSheet } from 'react-native'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 import GlobalStyles from '../styles/GlobalStyles'
 import { REQUEST, sendData } from '../core/server'
 import { UserContext } from '../core/UserContext'
@@ -71,9 +72,13 @@ export default function EventScreen({ route, navigation }) {
       <Text style={GlobalStyles.header}>About</Text>
       <Text style={styles.eventInfo}>{eventData.description}</Text>
       <Text style={GlobalStyles.header}>Participants</Text>
-      <View style={styles.eventInfo}>
+      <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
         {eventData.participants.map((user) => (
-          <Text key={user.userid}>{user.name}</Text>
+          <View key={user.userid} style={styles.userInfo}>
+            <TouchableOpacity onPress={() => navigation.navigate('Profile', user.name)}>
+              <Text>{user.name}</Text>
+            </TouchableOpacity>
+          </View>
         ))}
       </View>
     </View>
@@ -83,7 +88,15 @@ export default function EventScreen({ route, navigation }) {
 const styles = StyleSheet.create({
   eventInfo: {
     backgroundColor: '#ddd',
-    padding: 10,
+    padding: 15,
     borderRadius: 20,
   },
+  userInfo: {
+    flexDirection: 'row',
+    backgroundColor: '#ddd',
+    padding: 15,
+    borderRadius: 20,
+    margin: 5,
+  },
+
 })
