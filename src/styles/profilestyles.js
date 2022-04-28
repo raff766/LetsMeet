@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native'
+import { borderBottomColor } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes'
 
 export default StyleSheet.create({
   pcontainer: {
@@ -90,6 +91,14 @@ export default StyleSheet.create({
   editlogo: {
     alignSelf: 'flex-end',
     marginTop: 50,
+  },
+  inputOther: {
+    marginLeft: 10,
+    width: 200,
+    height: 40,
+    borderBottomColor: '#777',
+    borderBottomWidth: 1,
+    margin: 1,
   },
   tag:{
     backgroundColor: '#2A5353',

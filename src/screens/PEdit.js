@@ -4,26 +4,22 @@ import { TouchableOpacity } from 'react-native-gesture-handler'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import TagCard from '../components/TagCard'
 import profilestyles from '../styles/profilestyles'
-// possible import from Profile.js
-
-// change all profilestyles into GlobalStyles
 
 // Allows to edit thet profile screen
 
 export default function PEdit({ route }) {
-  const username = route.params
+  let username = route.params
   return (
     <View style={profilestyles.pcontainer}>
       <TouchableOpacity onPress={() => {}}>
         <Image
           style={profilestyles.avataredit}
-          source={{ uri: 'https://bootdey.com/img/Content/avatar/avatar6.png' }}
-        />
+          source={{ uri: 'https://bootdey.com/img/Content/avatar/avatar6.png' }}/>
         <Text style={{ alignSelf: 'center' }}>Tap to Edit Image</Text>
       </TouchableOpacity>
-      <Text style={{ fontSize: 20, alignItems: 'center', margin: 10 }}>
+      {/* <Text style={{ fontSize: 20, alignItems: 'center', margin: 10 }}>
         {username}
-      </Text>
+      </Text> */}
       <View>
         <View style={profilestyles.action}>
           <Icon name="account" color="black" size={25} />
@@ -31,17 +27,15 @@ export default function PEdit({ route }) {
             placeholder="User Name"
             placeholderTextColor="#666666"
             autoCorrect={false}
-            style={profilestyles.textInput}
+            style={profilestyles.inputOther}
           />
         </View>
         <View style={profilestyles.action}>
-          <Icon name="account" color="black" size={25} />
-          <TextInput
-            placeholder="Full Name"
-            placeholderTextColor="#666666"
-            autoCorrect={false}
-            style={profilestyles.textInput}
-          />
+              <Icon name='account' color='black' size={25}/>
+              <TextInput style={profilestyles.inputOther}
+                    placeholder='Name'
+                    placeholderTextColor='#666666'
+                    autoCorrect={false}/>
         </View>
         {/* make bio container */}
         <View style={profilestyles.action}>
@@ -51,10 +45,10 @@ export default function PEdit({ route }) {
             placeholderTextColor='#666666'
             multiline={true}
             autoCorrect={false}
-            style={profilestyles.input}
+            style={profilestyles.inputOther}
           />
         </View>
-        <View>
+        <View style={profilestyles.action}>
           <Icon name="tag-multiple" color="black" size={25}/>
           <TagCard></TagCard>
         </View>
