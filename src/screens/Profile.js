@@ -1,13 +1,27 @@
-import React from 'react'
+import { useFocusEffect } from '@react-navigation/core'
+import React, { useCallback, useState, useContext } from 'react'
+import { REQUEST, requestData } from '../core/server'
 import { Text, View, Image } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import profilestyles from '../styles/profilestyles'
+import { UserContext } from '../core/UserContext'
 
 // change all profilestyles into GlobalStyles
 
 export default function Profile({ route, navigation }) {
   const name = route.params
+  const [profile, setProfile] = useState({})
+  const { userId } = useContext(UserContext)
+
+  useFocusEffect(
+    useCallback(() => {
+      requestData(REQUEST.PROFILE, userId).then((data) => {
+        setProfile(data)
+      })
+    }, [])
+  )
+
   return (
     <View>
       <View style={profilestyles.header}>
@@ -20,15 +34,16 @@ export default function Profile({ route, navigation }) {
         style={profilestyles.avatar}
         source={{ uri: 'https://bootdey.com/img/Content/avatar/avatar6.png' }}
       />
+
       <View style={profilestyles.body}>
         <View>
           <Text style={profilestyles.info}>
-            - College Student at Cal State - Northridge
+            {profile.name}
           </Text>
         </View>
         <View>
           <Text style={profilestyles.description}>
-            - Likes Music, Hanging out with friends and sleeping.
+            {profile.bio}
           </Text>
         </View>
         <View style={profilestyles.bodyContent} />
