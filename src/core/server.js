@@ -21,22 +21,22 @@ export async function requestData(requestType, id) {
   if (!id) id = 'all'
   switch (requestType) {
     case REQUEST.EVENT:
-      requestType = 'get?event='
+      requestType = 'get?type=event&value='
       break
     case REQUEST.USER:
-      requestType = 'get?user='
+      requestType = 'get?type=user&value='
       break
     case REQUEST.USEREVENTS:
-      requestType = 'get?event=userevents&user='
+      requestType = 'get?type=userevents&value='
       break
     case REQUEST.CONVERSATIONS:
-      requestType = 'get?event=conversations&user='
+      requestType = 'get?type=conversations&value='
       break
     case REQUEST.MESSAGES:
-      requestType = 'get?event=messages&user='
+      requestType = 'get?type=messages&value='
       break
     case REQUEST.PROFILE:
-      requestType = 'get?event=profile&user='
+      requestType = 'get?type=profile&value='
       break
     default:
       throw new Error('Invalid request type!')
