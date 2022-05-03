@@ -101,6 +101,14 @@ export default StyleSheet.create({
     borderBottomWidth: 1,
     margin: 1,
   },
+  bioinputOther:{
+    marginLeft: 10,
+    width: 250,
+    height: 60,
+    borderBottomColor: '#777',
+    borderBottomWidth: 1,
+    margin: 1,
+  },
   tag:{
     backgroundColor: '#2A5353',
     borderRadius: 10,
