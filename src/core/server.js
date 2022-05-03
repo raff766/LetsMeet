@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import io from 'socket.io-client'
 
-const SERVER_IP = '54.219.150.98:5000'
+const SERVER_IP = '10.40.149.92:5000'
 export const socket = io('http://' + SERVER_IP)
 
 export const REQUEST = {

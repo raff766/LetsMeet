@@ -13,8 +13,9 @@ import profilestyles from '../styles/profilestyles'
 export default function PEdit({ route, navigation }) {
   const userId = route.params.userId
   const profile = route.params.profile
-  const [name, setName] = useState({ value: profile.name, error: '' })
-  const [bio, setBio] = useState({ value: profile.bio, error: '' })
+  const [name, setName] = useState(profile.name)
+  const [bio, setBio] = useState(profile.bio)
+  const [tags, setTags] = useState(['hello', 'fuck you'])
 
   const onSubmit = useCallback(() => {
     sendData(REQUEST.PROFILE, {
@@ -66,7 +67,7 @@ export default function PEdit({ route, navigation }) {
       </View>
       <View style={profilestyles.action}>
         <Icon name="tag-multiple" color="black" size={25}/>
-        <TagCard></TagCard>
+        <TagCard initialTags={tags} />
       </View>
       <Button mode="contained" style={styles.submit} onPress={onSubmit}>
         Save
