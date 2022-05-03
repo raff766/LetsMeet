@@ -69,6 +69,9 @@ export async function sendData(requestType, data) {
     case REQUEST.REMOVEEVENT:
       requestType = 'post?type=removeevent'
       break
+    case REQUEST.PROFILE:
+      requestType = 'post?type=profile'
+      break
     default:
       throw new Error('Invalid request type!')
   }

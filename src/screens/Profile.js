@@ -27,7 +27,7 @@ export default function Profile({ route, navigation }) {
   return (
     <View>
       <View style={profilestyles.header}>
-        <TouchableOpacity onPress={() => navigation.navigate('PEdit', name)}>
+        <TouchableOpacity onPress={() => navigation.navigate('PEdit', {userId, profile })}>
           <Icon name="account-edit" size={50} style={profilestyles.editlogo} />
         </TouchableOpacity>
       </View>
@@ -50,8 +50,8 @@ export default function Profile({ route, navigation }) {
         </View>
         <Text style={profilestyles.info}>Interests:</Text>
         <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
-          {tags.map((tag) => (
-            <View style={styles.tags}>
+          {tags.map((tag, index) => (
+            <View key={index} style={styles.tags}>
               <Text>{tag}</Text>
             </View>
           ))}

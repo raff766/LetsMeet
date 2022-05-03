@@ -1,5 +1,8 @@
-import React from 'react'
-import { Text, View, Image, TextInput } from 'react-native'
+import React, { useCallback, useState } from 'react'
+import { REQUEST, sendData } from '../core/server'
+import { Button } from 'react-native-paper'
+import { StyleSheet, Text, View, Image } from 'react-native'
+import TextInput from '../components/TextInput'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import TagCard from '../components/TagCard'
@@ -7,8 +10,22 @@ import profilestyles from '../styles/profilestyles'
 
 // Allows to edit thet profile screen
 
-export default function PEdit({ route }) {
-  let username = route.params
+export default function PEdit({ route, navigation }) {
+  const userId = route.params.userId
+  const profile = route.params.profile
+  const [name, setName] = useState({ value: profile.name, error: '' })
+  const [bio, setBio] = useState({ value: profile.bio, error: '' })
+
+  const onSubmit = useCallback(() => {
+    sendData(REQUEST.PROFILE, {
+      userid: userId,
+      name: name.value,
+      bio: bio.value,
+      tags: profile.tags,
+    })
+    navigation.goBack()
+  }, [name, bio])
+
   return (
     <View style={profilestyles.pcontainer}>
       <TouchableOpacity onPress={() => {}}>
@@ -17,42 +34,50 @@ export default function PEdit({ route }) {
           source={{ uri: 'https://bootdey.com/img/Content/avatar/avatar6.png' }}/>
         <Text style={{ alignSelf: 'center' }}>Tap to Edit Image</Text>
       </TouchableOpacity>
-      {/* <Text style={{ fontSize: 20, alignItems: 'center', margin: 10 }}>
-        {username}
-      </Text> */}
-      <View>
-        <View style={profilestyles.action}>
-          <Icon name="account" color="black" size={25} />
-          <TextInput
-            placeholder="User Name"
-            placeholderTextColor="#666666"
-            autoCorrect={false}
-            style={profilestyles.inputOther}
-          />
-        </View>
-        <View style={profilestyles.action}>
-              <Icon name='account' color='black' size={25}/>
-              <TextInput style={profilestyles.inputOther}
-                    placeholder='Name'
-                    placeholderTextColor='#666666'
-                    autoCorrect={false}/>
-        </View>
-        {/* make bio container */}
-        <View style={profilestyles.action}>
-          <Icon name="lead-pencil" color="black" size={25} />
-          <TextInput
-            placeholder='Bio/Description'
-            placeholderTextColor='#666666'
-            multiline={true}
-            autoCorrect={false}
-            style={profilestyles.inputOther}
-          />
-        </View>
-        <View style={profilestyles.action}>
-          <Icon name="tag-multiple" color="black" size={25}/>
-          <TagCard></TagCard>
-        </View>
+      <View style={profilestyles.action}>
+        <Icon name='account' color='black' size={25}/>
+        <TextInput
+          placeholder='Name'
+          placeholderTextColor='#666666'
+          returnKeyType="next"
+          value={name.value}
+          onChangeText={(text) => setName({ value: text, error: '' })}
+          autoCorrect={false}
+          style={profilestyles.inputOther}
+          error={!!name.error}
+          errorText={name.error}
+        />
       </View>
+      {/* make bio container */}
+      <View style={profilestyles.action}>
+        <Icon name="lead-pencil" color="black" size={25} />
+        <TextInput
+          placeholder='Bio/Description'
+          placeholderTextColor='#666666'
+          returnKeyType="next"
+          value={bio.value}
+          onChangeText={(text) => setBio({ value: text, error: '' })}
+          multiline={true}
+          autoCorrect={false}
+          style={profilestyles.inputOther}
+          error={!!bio.error}
+          errorText={bio.error}
+        />
+      </View>
+      <View style={profilestyles.action}>
+        <Icon name="tag-multiple" color="black" size={25}/>
+        <TagCard></TagCard>
+      </View>
+      <Button mode="contained" style={styles.submit} onPress={onSubmit}>
+        Save
+      </Button>
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  submit: {
+    width: '100%',
+    marginTop: 15,
+  },
+})
