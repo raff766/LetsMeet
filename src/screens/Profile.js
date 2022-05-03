@@ -1,7 +1,7 @@
 import { useFocusEffect } from '@react-navigation/core'
 import React, { useCallback, useState, useContext } from 'react'
 import { REQUEST, requestData } from '../core/server'
-import { Text, View, Image } from 'react-native'
+import { Text, View, Image, StyleSheet } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import profilestyles from '../styles/profilestyles'
@@ -12,12 +12,14 @@ import { UserContext } from '../core/UserContext'
 export default function Profile({ route, navigation }) {
   const name = route.params
   const [profile, setProfile] = useState({})
+  const [tags, setTags] = useState([])
   const { userId } = useContext(UserContext)
 
   useFocusEffect(
     useCallback(() => {
       requestData(REQUEST.PROFILE, userId).then((data) => {
         setProfile(data)
+        setTags(data["tags"])
       })
     }, [])
   )
@@ -46,8 +48,24 @@ export default function Profile({ route, navigation }) {
             {profile.bio}
           </Text>
         </View>
-        <View style={profilestyles.bodyContent} />
+        <Text style={profilestyles.info}>Interests:</Text>
+        <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+          {tags.map((tag) => (
+            <View style={styles.tags}>
+              <Text>{tag}</Text>
+            </View>
+          ))}
+        </View>
       </View>
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  tags: {
+    backgroundColor: '#ddd',
+    padding: 10,
+    borderRadius: 20,
+    margin: 5,
+  },
+})
