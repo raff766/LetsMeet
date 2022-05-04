@@ -15,17 +15,17 @@ export default function PEdit({ route, navigation }) {
   const profile = route.params.profile
   const [name, setName] = useState(profile.name)
   const [bio, setBio] = useState(profile.bio)
-  const [tags, setTags] = useState(['hello', 'fuck you'])
+  const [tags, setTags] = useState(profile.tags)
 
   const onSubmit = useCallback(() => {
     sendData(REQUEST.PROFILE, {
       userid: userId,
-      name: name.value,
-      bio: bio.value,
-      tags: profile.tags,
+      name: name,
+      bio: bio,
+      tags: tags,
     })
     navigation.goBack()
-  }, [name, bio])
+  }, [name, bio, tags])
 
   return (
     <View style={profilestyles.pcontainer}>
@@ -41,8 +41,8 @@ export default function PEdit({ route, navigation }) {
           placeholder='Name'
           placeholderTextColor='#666666'
           returnKeyType="next"
-          value={name.value}
-          onChangeText={(text) => setName({ value: text, error: '' })}
+          value={name}
+          onChangeText={(text) => setName(text)}
           autoCorrect={false}
           style={profilestyles.inputOther}
           error={!!name.error}
@@ -56,18 +56,18 @@ export default function PEdit({ route, navigation }) {
           placeholder='Bio/Description'
           placeholderTextColor='#666666'
           returnKeyType="next"
-          value={bio.value}
-          onChangeText={(text) => setBio({ value: text, error: '' })}
+          value={bio}
+          onChangeText={(text) => setBio(text)}
           multiline={true}
           autoCorrect={false}
-          style={profilestyles.inputOther}
+          style={profilestyles.bioinputOther}
           error={!!bio.error}
           errorText={bio.error}
         />
       </View>
       <View style={profilestyles.action}>
         <Icon name="tag-multiple" color="black" size={25}/>
-        <TagCard initialTags={tags} />
+        <TagCard initialTags={tags} onChangedTags={setTags}/>
       </View>
       <Button mode="contained" style={styles.submit} onPress={onSubmit}>
         Save
