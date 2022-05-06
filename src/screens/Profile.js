@@ -10,26 +10,40 @@ import { UserContext } from '../core/UserContext'
 // change all profilestyles into GlobalStyles
 
 export default function Profile({ route, navigation }) {
-  const name = route.params
+  const currUserId = route.params
+  const { userId } = useContext(UserContext)
   const [profile, setProfile] = useState({})
   const [tags, setTags] = useState([])
-  const { userId } = useContext(UserContext)
 
   useFocusEffect(
     useCallback(() => {
-      requestData(REQUEST.PROFILE, userId).then((data) => {
+      requestData(REQUEST.PROFILE, currUserId).then((data) => {
         setProfile(data)
         setTags(data["tags"])
       })
     }, [])
   )
 
+  const actionButton = () => {
+    if (currUserId == userId) {
+      return (
+        <TouchableOpacity onPress={() => navigation.navigate('PEdit', { userId, profile })}>
+          <Icon name="account-edit" size={50} style={profilestyles.editlogo} />
+        </TouchableOpacity>
+      )
+    } else {
+      return (
+        <TouchableOpacity>
+          <Icon name="chat-plus" size={50} style={profilestyles.editlogo} />
+        </TouchableOpacity>
+      )
+    }
+  }
+
   return (
     <View>
       <View style={profilestyles.header}>
-        <TouchableOpacity onPress={() => navigation.navigate('PEdit', {userId, profile })}>
-          <Icon name="account-edit" size={50} style={profilestyles.editlogo} />
-        </TouchableOpacity>
+        {actionButton()}
       </View>
       {/* Base image as profile screen, later on would take photo from phone or camera */}
       <Image

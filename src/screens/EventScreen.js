@@ -75,7 +75,7 @@ export default function EventScreen({ route, navigation }) {
       <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
         {eventData.participants.map((user) => (
           <View key={user.userid} style={styles.userInfo}>
-            <TouchableOpacity onPress={() => navigation.navigate('Profile', user.name)}>
+            <TouchableOpacity onPress={() => navigation.navigate('Profile', user.userid)}>
               <Text>{user.name}</Text>
             </TouchableOpacity>
           </View>

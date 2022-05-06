@@ -1,21 +1,23 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons'
-import React from 'react'
+import React, { useContext } from 'react'
 import { Image } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { Search, Home, Messages } from '../screens'
 import profilestyles from '../styles/profilestyles'
+import { UserContext } from '../core/UserContext'
 
 const Tab = createBottomTabNavigator()
 
 export default function DashboardTab({ navigation }) {
+  const { userId } = useContext(UserContext)
   return (
     <Tab.Navigator
       screenOptions={{
         headerLeft: () => (
           <TouchableOpacity
             style={{ width: 55, height: 55, marginLeft: 10 }}
-            onPress={() => navigation.navigate('Profile')}>
+            onPress={() => navigation.navigate('Profile', userId)}>
             <Image
               style={{
                 ...profilestyles.avatar,
