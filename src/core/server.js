@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import io from 'socket.io-client'
 
-const SERVER_IP = '10.40.149.92:5000'
+const SERVER_IP = '13.52.78.199:5000'
 export const socket = io('http://' + SERVER_IP)
 
 export const REQUEST = {
@@ -13,8 +13,9 @@ export const REQUEST = {
   REMOVEEVENT: 5,
   PARTICIPANT: 6,
   CONVERSATIONS: 7,
-  MESSAGES: 8,
-  PROFILE: 9,
+  CONVERSATION: 8,
+  MESSAGES: 9,
+  PROFILE: 10,
 }
 
 export async function requestData(requestType, id) {
@@ -71,6 +72,9 @@ export async function sendData(requestType, data) {
       break
     case REQUEST.PROFILE:
       requestType = 'post?type=profile'
+      break
+    case REQUEST.CONVERSATION:
+      requestType = 'post?type=conversation'
       break
     default:
       throw new Error('Invalid request type!')

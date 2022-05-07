@@ -12,7 +12,7 @@ export default function ChatScreen({ route }) {
 
   useFocusEffect(
     useCallback(() => {
-      requestData(REQUEST.MESSAGES, convoData['convoId']).then((data) => {
+      requestData(REQUEST.MESSAGES, convoData.convoId).then((data) => {
         setMessages(data.messages)
       })
     }, [])
@@ -26,9 +26,9 @@ export default function ChatScreen({ route }) {
     setMessages((previousMessages) =>
       GiftedChat.append(previousMessages, messages)
     )
-    socket.emit('send', {'fromUid':userId, 
-                        'toUid':String(convoData['userId']), 
-                        'convoId':String(convoData['convoId']), 
+    socket.emit('send', {'fromUid':userId,
+                        'toUid':String(convoData.userId),
+                        'convoId':String(convoData.convoId),
                         'message':messages});
     console.log("Sent message!!!!!!");
   }, [])
@@ -41,7 +41,7 @@ export default function ChatScreen({ route }) {
   }, [])
 
   useEffect(() => {
-    socket.on(String(userId) + String(convoData['convoId']), (msg) => {
+    socket.on(String(userId) + String(convoData.convid), (msg) => {
       console.log(msg)
       onGetMsg(msg)
     })

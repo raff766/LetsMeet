@@ -1,6 +1,6 @@
 import { useFocusEffect } from '@react-navigation/core'
 import React, { useCallback, useState, useContext } from 'react'
-import { REQUEST, requestData } from '../core/server'
+import { REQUEST, requestData, sendData } from '../core/server'
 import { Text, View, Image, StyleSheet } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
@@ -10,16 +10,24 @@ import { UserContext } from '../core/UserContext'
 // change all profilestyles into GlobalStyles
 
 export default function Profile({ route, navigation }) {
-  const currUserId = route.params
+  const currUserId = route.params.userid
   const { userId } = useContext(UserContext)
   const [profile, setProfile] = useState({})
   const [tags, setTags] = useState([])
+  const [convoId, setConvoId] = useState(-1)
 
   useFocusEffect(
     useCallback(() => {
       requestData(REQUEST.PROFILE, currUserId).then((data) => {
         setProfile(data)
-        setTags(data["tags"])
+        setTags(data.tags)
+      }).then(() => {
+        if (currUserId != userId) {
+          sendData(REQUEST.CONVERSATION, {
+            userid: userId,
+            other_userid: currUserId,
+          }).then((data) => setConvoId(data.convoid))
+        }
       })
     }, [])
   )
@@ -32,8 +40,10 @@ export default function Profile({ route, navigation }) {
         </TouchableOpacity>
       )
     } else {
+      const name = route.params.name
+      const userId = currUserId
       return (
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('ChatScreen', { name, convoId, userId } )}>
           <Icon name="chat-plus" size={50} style={profilestyles.editlogo} />
         </TouchableOpacity>
       )
