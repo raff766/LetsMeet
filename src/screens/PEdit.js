@@ -23,8 +23,7 @@ export default function PEdit({ route, navigation }) {
       name: name,
       bio: bio,
       tags: tags,
-    })
-    navigation.goBack()
+    }).then(() => navigation.goBack())
   }, [name, bio, tags])
 
   return (
