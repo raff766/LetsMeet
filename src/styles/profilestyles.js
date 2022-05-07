@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native'
-import { borderBottomColor } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes'
 
 export default StyleSheet.create({
   pcontainer: {
@@ -30,56 +29,31 @@ export default StyleSheet.create({
     alignSelf: 'center',
   },
   name: {
-    fontSize: 22,
-    color: '#FFFFFF',
-    fontWeight: '600',
+    fontSize: 20,
+    color: '#696969',
+    fontWeight: 'bold',
+    marginTop: 15,
   },
   body: {
     marginTop: 40,
-    margin: 10,
-  },
-  bodyContent: {
-    flex: 1,
-    alignItems: 'center',
-    padding: 30,
-  },
-  info: {
-    fontSize: 18,
-    color: '#696969',
-    marginTop: 10,
-    textAlign: 'left',
-    marginLeft: 20,
-  },
-  description: {
-    fontSize: 18,
-    color: '#696969',
-    marginTop: 10,
-    textAlign: 'left',
-    marginLeft: 20,
-  },
-  buttonContainer: {
-    marginTop: 54,
-    height: 45,
-    alignSelf: 'flex-end',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: 90,
-    borderRadius: 20,
-    backgroundColor: '#F3ED35',
-  },
-  cameraIcon: {
-    opacity: 0.5,
-    alignItems: 'center',
-    marginTop: 0,
-    top: 0,
-  },
-  UICenter: {
-    alignItems: 'center',
     margin: 20,
   },
-  Editcontent: {
-    borderRadius: 2,
-    alignItems: 'flex-end',
+  interests: {
+    fontSize: 18,
+    color: '#696969',
+    marginTop: 10,
+    marginBottom: 5,
+  },
+  line: {
+    borderTopWidth: 0.5, 
+    borderColor: 'lightgrey', 
+    marginBottom: 5,
+  },
+  bio: {
+    fontSize: 18,
+    color: '#696969',
+    marginTop: 20,
+    marginBottom: 25,
   },
   action: {
     flexDirection: 'row',
@@ -115,6 +89,16 @@ export default StyleSheet.create({
     padding: 10,
     margin: 10,
   },
+  tags:{
+    backgroundColor: '#ddd',
+    borderRadius: 20,
+    padding: 10,
+    margin: 5,
+  },
+  tagsWrap:{
+    flexDirection: 'row', 
+    flexWrap: 'wrap',
+  },
   taginput:{
     backgroundColor: '#FFFFFF',
     color: '#606060',
@@ -125,7 +109,7 @@ export default StyleSheet.create({
     fontWeight: 'bold',
   },
   tagContainer:{
-    margin: 10,
+    margin: 7,
     borderRadius: 10,
     backgroundColor: '#FFFFFF',
     justifyContent: 'flex-start',
@@ -133,5 +117,8 @@ export default StyleSheet.create({
   screen:{
     flex: 1,
     backgroundColor: '#D6D6D6'
+  },
+  icon:{
+    marginTop: 25,
   },
 })

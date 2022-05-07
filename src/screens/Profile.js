@@ -1,7 +1,7 @@
 import { useFocusEffect } from '@react-navigation/core'
 import React, { useCallback, useState, useContext } from 'react'
 import { REQUEST, requestData, sendData } from '../core/server'
-import { Text, View, Image, StyleSheet } from 'react-native'
+import { Text, View, Image } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import profilestyles from '../styles/profilestyles'
@@ -50,6 +50,15 @@ export default function Profile({ route, navigation }) {
     }
   }
 
+  const interests = () => {
+    if (tags.length != 0)
+      return (
+        <View style={profilestyles.line}>
+          <Text style={profilestyles.interests}>Interests</Text>
+        </View>
+      )
+  }
+
   return (
     <View>
       <View style={profilestyles.header}>
@@ -62,20 +71,16 @@ export default function Profile({ route, navigation }) {
       />
 
       <View style={profilestyles.body}>
-        <View>
-          <Text style={profilestyles.info}>
-            {profile.name}
-          </Text>
-        </View>
-        <View>
-          <Text style={profilestyles.description}>
-            {profile.bio}
-          </Text>
-        </View>
-        <Text style={profilestyles.info}>Interests:</Text>
-        <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+        <Text style={profilestyles.name}>
+          {profile.name}
+        </Text>
+        <Text style={profilestyles.bio}>
+          {profile.bio}
+        </Text>
+        {interests()}
+        <View style={profilestyles.tagsWrap}>
           {tags.map((tag, index) => (
-            <View key={index} style={styles.tags}>
+            <View key={index} style={profilestyles.tags}>
               <Text>{tag}</Text>
             </View>
           ))}
@@ -84,12 +89,3 @@ export default function Profile({ route, navigation }) {
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  tags: {
-    backgroundColor: '#ddd',
-    padding: 10,
-    borderRadius: 20,
-    margin: 5,
-  },
-})

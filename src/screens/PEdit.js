@@ -35,7 +35,7 @@ export default function PEdit({ route, navigation }) {
         <Text style={{ alignSelf: 'center' }}>Tap to Edit Image</Text>
       </TouchableOpacity>
       <View style={profilestyles.action}>
-        <Icon name='account' color='black' size={25}/>
+        <Icon name='account' style={profilestyles.icon} color='black' size={25}/>
         <TextInput
           placeholder='Name'
           placeholderTextColor='#666666'
@@ -50,7 +50,7 @@ export default function PEdit({ route, navigation }) {
       </View>
       {/* make bio container */}
       <View style={profilestyles.action}>
-        <Icon name="lead-pencil" color="black" size={25} />
+        <Icon style={profilestyles.icon} name="lead-pencil" color="black" size={25} />
         <TextInput
           placeholder='Bio/Description'
           placeholderTextColor='#666666'
@@ -65,7 +65,7 @@ export default function PEdit({ route, navigation }) {
         />
       </View>
       <View style={profilestyles.action}>
-        <Icon name="tag-multiple" color="black" size={25}/>
+        <Icon style={profilestyles.icon} name="tag-multiple" color="black" size={25}/>
         <TagCard initialTags={tags} onChangedTags={setTags}/>
       </View>
       <Button mode="contained" style={styles.submit} onPress={onSubmit}>
