@@ -8,22 +8,23 @@ import { REQUEST, sendData } from '../core/server'
 import { UserContext } from '../core/UserContext'
 
 export default function CreateEventScreen({ navigation }) {
-  const [name, setName] = useState({ value: '', error: '' })
-  const [description, setDescription] = useState({ value: '', error: '' })
+  const [name, setName] = useState('')
+  const [description, setDescription] = useState('')
+  const [location, setLocation] = useState('')
   const [date, setDate] = useState(new Date())
 
   const { userId } = useContext(UserContext)
 
   const onSubmit = useCallback(() => {
     sendData(REQUEST.EVENT, {
-      name: name.value,
+      name: name,
       date: date.toISOString().slice(0, 10),
-      description: description.value,
+      description: description,
       hostId: userId,
+      location: location,
       participantIds: [userId],
-    })
-    navigation.goBack()
-  }, [name, date, description])
+    }).then(() => navigation.goBack())
+  }, [name, date, description, location])
 
   return (
     <View style={{ ...GlobalStyles.background, alignItems: 'flex-start' }}>
@@ -34,18 +35,20 @@ export default function CreateEventScreen({ navigation }) {
       <TextInput
         label="Name"
         returnKeyType="next"
-        value={name.value}
-        onChangeText={(text) => setName({ value: text, error: '' })}
-        error={!!name.error}
-        errorText={name.error}
+        value={name}
+        onChangeText={(text) => setName(text)}
       />
       <TextInput
         label="Description"
         returnKeyType="next"
-        value={description.value}
-        onChangeText={(text) => setDescription({ value: text, error: '' })}
-        error={!!description.error}
-        errorText={description.error}
+        value={description}
+        onChangeText={(text) => setDescription(text)}
+      />
+      <TextInput
+        label="Location"
+        returnKeyType="next"
+        value={location}
+        onChangeText={(text) => setLocation(text)}
       />
       <Text style={GlobalStyles.paragraph}>
         Choose what date you will be hosting your event.

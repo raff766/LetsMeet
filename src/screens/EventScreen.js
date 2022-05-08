@@ -70,7 +70,13 @@ export default function EventScreen({ route, navigation }) {
         <Text>Date: {eventData.date}</Text>
       </View>
       <Text style={GlobalStyles.header}>About</Text>
-      <Text style={styles.eventInfo}>{eventData.description}</Text>
+      <View style={styles.eventInfo}>
+        <Text>{eventData.description}</Text>
+      </View>
+      <Text style={GlobalStyles.header}>Location</Text>
+      <View style={styles.eventInfo}>
+        <Text>{eventData.location}</Text>
+      </View>
       <Text style={GlobalStyles.header}>Participants</Text>
       <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
         {eventData.participants.map((user) => (
@@ -87,7 +93,7 @@ export default function EventScreen({ route, navigation }) {
 
 const styles = StyleSheet.create({
   eventInfo: {
-    backgroundColor: '#ddd',
+    backgroundColor: '#ececec',
     padding: 15,
     borderRadius: 20,
   },
