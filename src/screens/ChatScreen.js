@@ -41,7 +41,7 @@ export default function ChatScreen({ route }) {
   }, [])
 
   useEffect(() => {
-    socket.on(String(userId) + String(convoData.convid), (msg) => {
+    socket.on(String(userId) + String(convoData.convoId), (msg) => {
       console.log(msg)
       onGetMsg(msg)
     })
