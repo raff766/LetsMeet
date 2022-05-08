@@ -59,8 +59,19 @@ export default function Profile({ route, navigation }) {
       )
   }
 
+  const logoutButton = () => {
+    if (currUserId == userId)
+      return (
+        <View style={{ flex: 1, justifyContent: 'flex-end', marginBottom: 40, marginLeft: 10 }}>
+          <TouchableOpacity onPress={() => navigation.navigate('StartScreen')}>
+            <Icon name="logout" size={50} style={profilestyles.editlogo}/>
+          </TouchableOpacity>
+        </View>
+      )
+  }
+
   return (
-    <View>
+    <View style={{flex: 1}}>
       <View style={profilestyles.header}>
         {actionButton()}
       </View>
@@ -86,6 +97,7 @@ export default function Profile({ route, navigation }) {
           ))}
         </View>
       </View>
+      {logoutButton()}
     </View>
   )
 }
