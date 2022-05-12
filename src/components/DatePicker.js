@@ -39,13 +39,10 @@ export default function DatePicker({ onPicked }) {
     <View>
       <View>
         <Button onPress={() => setShowDate(true)}>
-          {date.toLocaleDateString() + ' ' + formatAMPM(date)}
+          {date.toLocaleDateString()}
         </Button>
       </View>
       {showDate && <DateTimePicker value={date} onChange={onChooseDate} />}
-      {showTime && (
-        <DateTimePicker value={date} onChange={onChooseTime} mode="time" />
-      )}
     </View>
   )
 }
