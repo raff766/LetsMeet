@@ -28,7 +28,7 @@ export default function PEdit({ route, navigation }) {
 
   return (
     <View style={profilestyles.pcontainer}>
-      <TouchableOpacity onPress={() => {}}>
+      <TouchableOpacity>
         <Image
           style={profilestyles.avataredit}
           source={{ uri: 'https://bootdey.com/img/Content/avatar/avatar6.png' }}/>

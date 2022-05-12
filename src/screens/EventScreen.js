@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { Button, Text } from 'react-native-paper'
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, Image } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import GlobalStyles from '../styles/GlobalStyles'
 import { REQUEST, sendData } from '../core/server'
@@ -65,13 +65,15 @@ export default function EventScreen({ route, navigation }) {
         <Text style={GlobalStyles.header}>{eventData.name}</Text>
         {actionButton()}
       </View>
+      <Image
+        style={styles.image}
+        source={{ uri: eventData.image }}
+      />
+      <Text style={GlobalStyles.header}>About</Text>
       <View style={styles.eventInfo}>
         <Text>Host: {eventData.host.name}</Text>
         <Text>Date: {eventData.date}</Text>
-      </View>
-      <Text style={GlobalStyles.header}>About</Text>
-      <View style={styles.eventInfo}>
-        <Text>{eventData.description}</Text>
+        <Text>Description: {eventData.description}</Text>
       </View>
       <Text style={GlobalStyles.header}>Location</Text>
       <View style={styles.eventInfo}>
@@ -104,5 +106,11 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     margin: 5,
   },
-
+  image: { 
+    width: '100%',
+    height: 200,
+    borderRadius: 5,
+    marginBottom: 10,
+    alignSelf: 'center',
+  },
 })
