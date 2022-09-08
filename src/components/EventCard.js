@@ -9,10 +9,7 @@ export default function EventCard({ eventData, navigation }) {
       style={styles.card}
       onPress={() => navigation.navigate('EventScreen', eventData)}>
       <View style={{ flexDirection: 'row' }}>
-        <Image
-          style={styles.image}
-          source={{ uri: eventData.image }}
-        />
+        <Image style={styles.image} source={{ uri: eventData.image }} />
         <View>
           <Text style={styles.title}>{eventData.name}</Text>
           <Text>Date: {eventData.date}</Text>

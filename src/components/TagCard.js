@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import { TouchableOpacity, Text, View } from 'react-native'
 import Tags from 'react-native-tags'
 import profilestyles from '../styles/profilestyles'
 
 export default function TagCard({ initialTags, onChangedTags }) {
-  const renderTag = ({ tag, index, onPress, deleteTagOnPress, readonly }) => {
+  const renderTag = ({ tag, index, onPress }) => {
     return (
       <TouchableOpacity
         key={`${tag}-${index}`}

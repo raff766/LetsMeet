@@ -17,7 +17,7 @@ export default function DashboardTab({ navigation }) {
         headerLeft: () => (
           <TouchableOpacity
             style={{ width: 55, height: 55, marginLeft: 10 }}
-            onPress={() => navigation.navigate('Profile', {"userid": userId})}>
+            onPress={() => navigation.navigate('Profile', { userid: userId })}>
             <Image
               style={{
                 ...profilestyles.avatar,

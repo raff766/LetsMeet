@@ -1,9 +1,12 @@
+/* eslint-disable consistent-return */
+/* eslint-disable no-shadow */
+/* eslint-disable no-else-return */
 import { useFocusEffect } from '@react-navigation/core'
 import React, { useCallback, useState, useContext } from 'react'
-import { REQUEST, requestData, sendData } from '../core/server'
 import { Text, View, Image } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import { REQUEST, requestData, sendData } from '../core/server'
 import profilestyles from '../styles/profilestyles'
 import { UserContext } from '../core/UserContext'
 
@@ -18,24 +21,27 @@ export default function Profile({ route, navigation }) {
 
   useFocusEffect(
     useCallback(() => {
-      requestData(REQUEST.PROFILE, currUserId).then((data) => {
-        setProfile(data)
-        setTags(data.tags)
-      }).then(() => {
-        if (currUserId != userId) {
-          sendData(REQUEST.CONVERSATION, {
-            userid: userId,
-            other_userid: currUserId,
-          }).then((data) => setConvoId(data.convoid))
-        }
-      })
+      requestData(REQUEST.PROFILE, currUserId)
+        .then((data) => {
+          setProfile(data)
+          setTags(data.tags)
+        })
+        .then(() => {
+          if (currUserId !== userId) {
+            sendData(REQUEST.CONVERSATION, {
+              userid: userId,
+              other_userid: currUserId,
+            }).then((data) => setConvoId(data.convoid))
+          }
+        })
     }, [])
   )
 
   const actionButton = () => {
-    if (currUserId == userId) {
+    if (currUserId === userId) {
       return (
-        <TouchableOpacity onPress={() => navigation.navigate('PEdit', { userId, profile })}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('PEdit', { userId, profile })}>
           <Icon name="account-edit" size={50} style={profilestyles.editlogo} />
         </TouchableOpacity>
       )
@@ -43,7 +49,10 @@ export default function Profile({ route, navigation }) {
       const name = route.params.name
       const userId = currUserId
       return (
-        <TouchableOpacity onPress={() => navigation.navigate('ChatScreen', { name, convoId, userId } )}>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate('ChatScreen', { name, convoId, userId })
+          }>
           <Icon name="chat-plus" size={50} style={profilestyles.editlogo} />
         </TouchableOpacity>
       )
@@ -51,7 +60,7 @@ export default function Profile({ route, navigation }) {
   }
 
   const interests = () => {
-    if (tags.length != 0)
+    if (tags.length !== 0)
       return (
         <View style={profilestyles.line}>
           <Text style={profilestyles.interests}>Interests</Text>
@@ -60,21 +69,25 @@ export default function Profile({ route, navigation }) {
   }
 
   const logoutButton = () => {
-    if (currUserId == userId)
+    if (currUserId === userId)
       return (
-        <View style={{ flex: 1, justifyContent: 'flex-end', marginBottom: 40, marginLeft: 10 }}>
+        <View
+          style={{
+            flex: 1,
+            justifyContent: 'flex-end',
+            marginBottom: 40,
+            marginLeft: 10,
+          }}>
           <TouchableOpacity onPress={() => navigation.navigate('StartScreen')}>
-            <Icon name="logout" size={50} style={profilestyles.editlogo}/>
+            <Icon name="logout" size={50} style={profilestyles.editlogo} />
           </TouchableOpacity>
         </View>
       )
   }
 
   return (
-    <View style={{flex: 1}}>
-      <View style={profilestyles.header}>
-        {actionButton()}
-      </View>
+    <View style={{ flex: 1 }}>
+      <View style={profilestyles.header}>{actionButton()}</View>
       {/* Base image as profile screen, later on would take photo from phone or camera */}
       <Image
         style={profilestyles.avatar}
@@ -82,12 +95,8 @@ export default function Profile({ route, navigation }) {
       />
 
       <View style={profilestyles.body}>
-        <Text style={profilestyles.name}>
-          {profile.name}
-        </Text>
-        <Text style={profilestyles.bio}>
-          {profile.bio}
-        </Text>
+        <Text style={profilestyles.name}>{profile.name}</Text>
+        <Text style={profilestyles.bio}>{profile.bio}</Text>
         {interests()}
         <View style={profilestyles.tagsWrap}>
           {tags.map((tag, index) => (

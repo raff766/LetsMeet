@@ -65,10 +65,7 @@ export default function EventScreen({ route, navigation }) {
         <Text style={GlobalStyles.header}>{eventData.name}</Text>
         {actionButton()}
       </View>
-      <Image
-        style={styles.image}
-        source={{ uri: eventData.image }}
-      />
+      <Image style={styles.image} source={{ uri: eventData.image }} />
       <Text style={GlobalStyles.header}>About</Text>
       <View style={styles.eventInfo}>
         <Text>Host: {eventData.host.name}</Text>
@@ -83,7 +80,8 @@ export default function EventScreen({ route, navigation }) {
       <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
         {eventData.participants.map((user) => (
           <View key={user.userid} style={styles.userInfo}>
-            <TouchableOpacity onPress={() => navigation.navigate('Profile', user)}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('Profile', user)}>
               <Text>{user.name}</Text>
             </TouchableOpacity>
           </View>
@@ -106,7 +104,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     margin: 5,
   },
-  image: { 
+  image: {
     width: '100%',
     height: 200,
     borderRadius: 5,

@@ -17,11 +17,11 @@ export default function CreateEventScreen({ navigation }) {
 
   const onSubmit = useCallback(() => {
     sendData(REQUEST.EVENT, {
-      name: name,
+      name,
       date: date.toISOString().slice(0, 10),
-      description: description,
+      description,
       hostId: userId,
-      location: location,
+      location,
       participantIds: [userId],
     }).then(() => navigation.goBack())
   }, [name, date, description, location])

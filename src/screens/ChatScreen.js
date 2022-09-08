@@ -1,6 +1,6 @@
 /* eslint-disable no-shadow */
 import { useFocusEffect } from '@react-navigation/core'
-import React, { useEffect, useState, useCallback, useContext} from 'react'
+import React, { useEffect, useState, useCallback, useContext } from 'react'
 import { GiftedChat } from 'react-native-gifted-chat'
 import { socket, REQUEST, requestData } from '../core/server'
 import { UserContext } from '../core/UserContext'
@@ -19,30 +19,29 @@ export default function ChatScreen({ route }) {
   )
 
   socket.on('connect', () => {
-    console.log('Connected:', socket.connected);
-  });
+    console.log('Connected:', socket.connected)
+  })
 
   const onSend = useCallback((messages = []) => {
     setMessages((previousMessages) =>
       GiftedChat.append(previousMessages, messages)
     )
-    socket.emit('send', {'fromUid':userId,
-                        'toUid':String(convoData.userId),
-                        'convoId':String(convoData.convoId),
-                        'message':messages});
-    console.log("Sent message!!!!!!");
+    socket.emit('send', {
+      fromUid: userId,
+      toUid: String(convoData.userId),
+      convoId: String(convoData.convoId),
+      message: messages,
+    })
   }, [])
 
   const onGetMsg = useCallback((messages = []) => {
     setMessages((previousMessages) =>
       GiftedChat.append(previousMessages, messages['message'][0])
     )
-    console.log(messages);
   }, [])
 
   useEffect(() => {
     socket.on(String(userId) + String(convoData.convoId), (msg) => {
-      console.log(msg)
       onGetMsg(msg)
     })
   }, [socket])
